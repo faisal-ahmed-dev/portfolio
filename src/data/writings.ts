@@ -1,0 +1,58 @@
+import type { WritingArticle } from "@/types/portfolio.types";
+
+export const WRITINGS: WritingArticle[] = [
+  {
+    id: "offline-first-pos",
+    title: "Building Offline-First POS Systems with IndexedDB and Background Sync",
+    url: "#",
+    date: "2025-01-15",
+    source: "dev.to",
+    summary: "How we built Orderly POS to keep working during network outages — queueing orders, syncing on reconnect, resolving conflicts.",
+    tags: ["PWA", "IndexedDB", "Architecture"],
+  },
+  {
+    id: "dnd-kit-deep-dive",
+    title: "dnd-kit Deep Dive: Building Production-Grade Drag and Drop",
+    url: "#",
+    date: "2024-11-20",
+    source: "Hashnode",
+    summary: "Beyond the docs — accessibility, keyboard navigation, collision detection strategies, and custom sensors for a form builder.",
+    tags: ["dnd-kit", "React", "UX"],
+  },
+  {
+    id: "jotai-architecture",
+    title: "Jotai at Scale: Structuring Atoms for Multi-Team Frontends",
+    url: "#",
+    date: "2024-09-08",
+    source: "dev.to",
+    summary: "Atom families, derived atoms, and persistence patterns that keep state predictable across 10+ feature modules.",
+    tags: ["Jotai", "State Management", "Architecture"],
+  },
+  {
+    id: "react-compiler",
+    title: "React 19 Compiler in Production: Dropping 80% of useMemo calls",
+    url: "#",
+    date: "2025-02-01",
+    source: "Medium",
+    summary: "Real-world numbers from migrating a 40-component design system to React Compiler. What it catches, what it misses.",
+    tags: ["React 19", "Performance", "Compiler"],
+  },
+  {
+    id: "clean-arch-frontend",
+    title: "Clean Architecture on the Frontend: A Practical Guide",
+    url: "#",
+    date: "2024-07-12",
+    source: "Hashnode",
+    summary: "Entities, use cases, and adapters applied to Next.js — with a working payment flow example you can run locally.",
+    tags: ["Clean Architecture", "Next.js", "TypeScript"],
+  },
+  {
+    id: "micro-frontend-federation",
+    title: "Module Federation Without the Pain: Lessons from a Platform Migration",
+    url: "#",
+    date: "2024-05-30",
+    source: "dev.to",
+    summary: "Moving from a monolith to micro-frontends at 3S. Shared state, versioned contracts, and the rollback strategy that saved us.",
+    tags: ["Module Federation", "Micro-frontends", "Webpack"],
+  },
+];

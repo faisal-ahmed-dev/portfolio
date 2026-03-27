@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(find /d/CODEBLOCKS/portfolio/src -type f -name \"*\" 2>/dev/null | head -50)"
+      "Bash(find /d/CODEBLOCKS/portfolio/src -type f -name \"*\" 2>/dev/null | head -50)",
+      "Bash(cd D:/CODEBLOCKS/portfolio && pnpm add framer-motion jotai lucide-react clsx tailwind-merge @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities @radix-ui/react-dialog @radix-ui/react-tooltip 2>&1 | tail -20)",
+      "Bash(cd D:/CODEBLOCKS/portfolio && pnpm run build 2>&1)",
+      "Bash(cd D:/CODEBLOCKS/portfolio && node -e \"const l = require\\('lucide-react'\\); const keys = Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\('github'\\) || k.toLowerCase\\(\\).includes\\('linkedin'\\)\\); console.log\\(keys\\)\")",
+      "Bash(cd D:/CODEBLOCKS/portfolio && node -e \"const l = require\\('lucide-react'\\); console.log\\(Object.keys\\(l\\).slice\\(0, 20\\)\\)\" 2>&1 | head -5)",
+      "Bash(cd D:/CODEBLOCKS/portfolio && node -e \"const l = require\\('lucide-react'\\); const keys = Object.keys\\(l\\).filter\\(k => /git|link/i.test\\(k\\)\\); console.log\\(keys\\)\" 2>&1)",
+      "Bash(cd D:/CODEBLOCKS/portfolio && pnpm add sonner @radix-ui/react-slot class-variance-authority 2>&1)"
     ]
   }
 }
