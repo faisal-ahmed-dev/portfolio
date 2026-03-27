@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowDown, ExternalLink, ChevronRight } from "lucide-react";
+import { ArrowDown, ExternalLink, ChevronRight, Download } from "lucide-react";
 import { CyberGrid } from "@/components/background/CyberGrid";
 import { NeonButton } from "@/components/ui/NeonButton";
 import { PORTFOLIO } from "@/data/portfolio";
@@ -56,7 +56,7 @@ export function Hero() {
           className="text-[#888] text-lg mb-10 max-w-xl mx-auto leading-relaxed"
         >
           {PORTFOLIO.yearsExp} years @ {PORTFOLIO.company} · POS for 300+ restaurants ·{" "}
-          <span className="text-[#00F0FF]">open to remote</span>
+          <span className="text-[#00F0FF]">open to KSA opportunities</span>
         </motion.p>
 
         {/* CTAs */}
@@ -66,6 +66,9 @@ export function Hero() {
           </NeonButton>
           <NeonButton variant="secondary" size="lg" as="a" href="#architecture">
             Explore Architecture <ChevronRight size={18} />
+          </NeonButton>
+          <NeonButton variant="ghost" size="lg" as="a" href={PORTFOLIO.cvPath} download>
+            <Download size={18} /> Download CV
           </NeonButton>
         </motion.div>
       </motion.div>

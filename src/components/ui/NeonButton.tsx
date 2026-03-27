@@ -10,6 +10,7 @@ interface NeonButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   target?: string;
   rel?: string;
+  download?: boolean | string;
 }
 
 export function NeonButton({
@@ -21,6 +22,7 @@ export function NeonButton({
   href,
   target,
   rel,
+  download,
   ...props
 }: NeonButtonProps) {
   const classes = cn(
@@ -43,6 +45,7 @@ export function NeonButton({
         href={href}
         target={target}
         rel={rel}
+        download={download}
         className={classes}
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}

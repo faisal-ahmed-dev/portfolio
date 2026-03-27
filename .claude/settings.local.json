@@ -7,7 +7,8 @@
       "Bash(cd D:/CODEBLOCKS/portfolio && node -e \"const l = require\\('lucide-react'\\); const keys = Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\('github'\\) || k.toLowerCase\\(\\).includes\\('linkedin'\\)\\); console.log\\(keys\\)\")",
       "Bash(cd D:/CODEBLOCKS/portfolio && node -e \"const l = require\\('lucide-react'\\); console.log\\(Object.keys\\(l\\).slice\\(0, 20\\)\\)\" 2>&1 | head -5)",
       "Bash(cd D:/CODEBLOCKS/portfolio && node -e \"const l = require\\('lucide-react'\\); const keys = Object.keys\\(l\\).filter\\(k => /git|link/i.test\\(k\\)\\); console.log\\(keys\\)\" 2>&1)",
-      "Bash(cd D:/CODEBLOCKS/portfolio && pnpm add sonner @radix-ui/react-slot class-variance-authority 2>&1)"
+      "Bash(cd D:/CODEBLOCKS/portfolio && pnpm add sonner @radix-ui/react-slot class-variance-authority 2>&1)",
+      "Bash(cd \"/d/CODEBLOCKS/portfolio\" && pnpm run build 2>&1)"
     ]
   }
 }

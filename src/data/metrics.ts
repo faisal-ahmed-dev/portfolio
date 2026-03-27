@@ -2,31 +2,31 @@ import type { Metric } from "@/types/portfolio.types";
 
 export const METRICS: Metric[] = [
   {
-    id: "restaurants",
-    label: "Restaurants Live",
+    id: "customers",
+    label: "Production Customers",
     value: 300,
     suffix: "+",
-    description: "Restaurants running Orderly POS in production",
-  },
-  {
-    id: "uptime",
-    label: "System Uptime",
-    value: 99.9,
-    suffix: "%",
-    description: "Average uptime across production deployments",
+    description: "dHealth pharma e-commerce in production",
   },
   {
     id: "components",
-    label: "Components Shipped",
-    value: 40,
+    label: "Components Built",
+    value: 112,
     suffix: "+",
-    description: "Reusable components in the design system",
+    description: "Components in Orderly POS alone",
+  },
+  {
+    id: "lines",
+    label: "Lines of Type-Safe Code",
+    value: 60,
+    suffix: "k+",
+    description: "QR Ordering System codebase",
   },
   {
     id: "experience",
-    label: "Years at 3S",
+    label: "Years of Experience",
     value: 2,
-    suffix: " yrs",
-    description: "Building production systems at 3S",
+    suffix: "+",
+    description: "Production engineering since Feb 2024",
   },
 ];

@@ -10,7 +10,7 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 export const SOCIAL_LINKS = {
-  github: "https://github.com/faisalahmed",
-  linkedin: "https://linkedin.com/in/faisalahmed",
-  email: "hello@faisalahmed.dev",
+  github: "https://github.com/faisal-ahmed-dev",
+  linkedin: "https://www.linkedin.com/in/faisal-ahmed-dev",
+  email: "faisalksabd999@gmail.com",
 };

@@ -152,4 +152,128 @@ const usePlaceOrder = () => {
     language: "typescript",
     color: "mixed",
   },
+  {
+    id: "ddd",
+    title: "Domain-Driven Design",
+    acronym: "DDD",
+    description: "Model software around real business domains. In 3S Feedback Solution, bounded contexts keep Order, Feedback, and Tenant domains isolated with their own aggregate roots.",
+    codeSnippet: `// Aggregate Root — owns invariants for the Feedback domain
+class OrderAggregate {
+  private constructor(
+    public readonly id: OrderId,
+    private items: OrderItem[],
+    private status: OrderStatus,
+  ) {}
+
+  static create(items: OrderItem[]): OrderAggregate {
+    if (items.length === 0) throw new DomainError('Order must have items');
+    return new OrderAggregate(OrderId.generate(), items, 'pending');
+  }
+}
+
+// Domain Service — stateless, cross-aggregate logic
+class FeedbackDomainService {
+  async collectFeedback(orderId: OrderId): Promise<Feedback> { ... }
+}
+
+// Repository Interface — domain owns the contract
+interface IFeedbackRepository {
+  save(feedback: Feedback): Promise<void>;
+  findByOrder(orderId: OrderId): Promise<Feedback[]>;
+}`,
+    language: "typescript",
+    color: "cyan",
+  },
+  {
+    id: "rbac",
+    title: "Role-Based Access Control",
+    acronym: "RBAC",
+    description: "Declarative permission guards at every layer. The QR ordering system uses NestJS decorator-based RBAC with a permission matrix for staff, manager, and owner roles.",
+    codeSnippet: `// Decorator marks required roles on controller methods
+@Roles('manager', 'owner')
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Delete('/orders/:id')
+async cancelOrder(@Param('id') id: string) { ... }
+
+// Guard reads metadata and checks user permissions
+@Injectable()
+export class RolesGuard implements CanActivate {
+  canActivate(ctx: ExecutionContext): boolean {
+    const required = this.reflector.get<Role[]>('roles', ctx.getHandler());
+    const user = ctx.switchToHttp().getRequest().user;
+    return required.some(role => PERMISSION_MATRIX[user.role]?.includes(role));
+  }
+}
+
+// Centralised permission matrix — one place to change
+type PermissionMatrix = Record<Role, Role[]>;
+const PERMISSION_MATRIX: PermissionMatrix = {
+  owner:   ['owner', 'manager', 'staff'],
+  manager: ['manager', 'staff'],
+  staff:   ['staff'],
+};`,
+    language: "typescript",
+    color: "indigo",
+  },
+  {
+    id: "offline-first",
+    title: "Offline-First",
+    acronym: "OF",
+    description: "Write locally first, sync when connected. Orderly POS uses Dexie (IndexedDB) as the source of truth with a background sync queue so kitchens keep working through network drops.",
+    codeSnippet: `// Optimistic write to IndexedDB — instant UI feedback
+const useOfflineQueue = () => {
+  const enqueue = async (action: QueuedAction) => {
+    await db.syncQueue.add({ ...action, syncedAt: null });
+    // UI updates immediately — no waiting for server
+    mutateLocalState(action);
+  };
+  return { enqueue };
+};
+
+// Background sync — drains queue when back online
+const syncQueue = async () => {
+  const pending = await db.syncQueue.where('syncedAt').equals(null).toArray();
+  for (const action of pending) {
+    await api.apply(action);               // replay on server
+    await db.syncQueue.update(action.id, { syncedAt: Date.now() });
+  }
+};
+
+// Register service worker sync event
+self.addEventListener('sync', (e) => {
+  if (e.tag === 'pos-sync') e.waitUntil(syncQueue());
+});`,
+    language: "typescript",
+    color: "cyan",
+  },
+  {
+    id: "soc",
+    title: "Separation of Concerns",
+    acronym: "SoC",
+    description: "Keep React components as thin view adapters. All business logic lives in the use-case layer — components just render state and dispatch intents.",
+    codeSnippet: `// ✅ Thin hook — React layer only wires use-case to UI
+const usePlaceOrder = () => {
+  const useCase = useMemo(() => container.resolve(PlaceOrderUseCase), []);
+  const [loading, setLoading] = useState(false);
+
+  const place = async (order: Order) => {
+    setLoading(true);
+    await useCase.execute(order);   // all logic lives here
+    setLoading(false);
+  };
+  return { place, loading };
+};
+
+// ❌ Fat component anti-pattern — logic leaks into view
+const OrderButton = ({ items }: Props) => {
+  const onClick = async () => {
+    const total = items.reduce((s, i) => s + i.price * i.qty, 0); // ❌ business logic
+    if (total < 0) throw new Error('...');                          // ❌ validation
+    await fetch('/api/orders', { method: 'POST', body: JSON.stringify({ items, total }) });
+  };
+  return <button onClick={onClick}>Place Order</button>;
+};`,
+    language: "typescript",
+    color: "indigo",
+  },
 ];
