@@ -21,10 +21,10 @@ export function PrinciplesShowcase() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-12 grid md:grid-cols-2 gap-6"
+          className="mt-12 flex gap-4 overflow-x-auto scrollbar-none pb-4"
         >
           {PRINCIPLES.map((principle) => (
-            <motion.div key={principle.id} variants={staggerItem}>
+            <motion.div key={principle.id} variants={staggerItem} className="shrink-0 w-80">
               <GlassCard
                 neon={principle.color === "cyan" ? "cyan" : principle.color === "indigo" ? "indigo" : "cyan"}
                 className="p-6 h-full"

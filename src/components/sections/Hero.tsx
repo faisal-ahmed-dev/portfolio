@@ -4,6 +4,7 @@ import { ArrowDown, ExternalLink, ChevronRight, Download } from "lucide-react";
 import { CyberGrid } from "@/components/background/CyberGrid";
 import { NeonButton } from "@/components/ui/NeonButton";
 import { PORTFOLIO } from "@/data/portfolio";
+import { HERO_TECH_BADGES } from "@/data/techStack";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 export function Hero() {
@@ -31,6 +32,19 @@ export function Hero() {
           Frontend · Fullstack · 3S
         </motion.p>
 
+        {/* Role badges */}
+        <motion.div variants={staggerItem} className="flex items-center justify-center gap-2 mb-4">
+          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-[#888]">
+            Full-Stack Engineer
+          </span>
+          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#00F0FF]/10 border border-[#00F0FF]/20 text-[#00F0FF]">
+            2 yrs exp
+          </span>
+          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-[#888]">
+            @ 3S
+          </span>
+        </motion.div>
+
         {/* Name */}
         <motion.h1
           variants={staggerItem}
@@ -53,11 +67,20 @@ export function Hero() {
         {/* Sub-tagline */}
         <motion.p
           variants={staggerItem}
-          className="text-[#888] text-lg mb-10 max-w-xl mx-auto leading-relaxed"
+          className="text-[#888] text-lg mb-4 max-w-xl mx-auto leading-relaxed"
         >
           {PORTFOLIO.yearsExp} years @ {PORTFOLIO.company} · POS for 300+ restaurants ·{" "}
-          <span className="text-[#00F0FF]">open to KSA opportunities</span>
+          <span className="text-[#00F0FF]">Remote · Open to KSA</span>
         </motion.p>
+
+        {/* Tech badges */}
+        <motion.div variants={staggerItem} className="flex flex-wrap gap-2 justify-center mb-10">
+          {HERO_TECH_BADGES.map((tech) => (
+            <span key={tech} className="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-[#ccc] hover:border-[#00F0FF]/40 hover:text-[#00F0FF] transition-colors">
+              {tech}
+            </span>
+          ))}
+        </motion.div>
 
         {/* CTAs */}
         <motion.div variants={staggerItem} className="flex flex-wrap gap-4 justify-center">

@@ -6,6 +6,7 @@ import { BootAnimation } from "@/components/sections/BootAnimation";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
+import { TechStack } from "@/components/sections/TechStack";
 import { LiveMetricsBar } from "@/components/sections/LiveMetricsBar";
 import { PrinciplesShowcase } from "@/components/sections/PrinciplesShowcase";
 import { WritingsSection } from "@/components/sections/WritingsSection";
@@ -41,6 +42,7 @@ export default function Home() {
           <Navbar />
           <main>
             <Hero />
+            <TechStack />
             <LiveMetricsBar />
             <ProjectSimulator />
             <ArchitectureHologram />
