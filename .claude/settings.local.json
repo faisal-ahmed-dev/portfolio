@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /d/CODEBLOCKS/portfolio/src -type f -name \"*\" 2>/dev/null | head -50)"
+    ]
+  }
+}
