@@ -19,7 +19,7 @@ export function Navbar() {
       <div className="glass-float-nav max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
         {/* Logo */}
         <a href="#hero" className="text-white font-bold text-lg tracking-tight">
-          <span className="gradient-text">{PORTFOLIO.name}</span>
+          {PORTFOLIO.name}
         </a>
 
         {/* Desktop nav */}

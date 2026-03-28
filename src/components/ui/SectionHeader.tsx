@@ -18,7 +18,7 @@ export function SectionHeader({ eyebrow, title, description, centered = false }:
       viewport={{ once: true }}
       className={centered ? "text-center" : ""}
     >
-      <p className="text-xs font-bold tracking-[0.2em] uppercase gradient-text mb-3">{eyebrow}</p>
+      <p className="text-xs font-bold tracking-[0.2em] uppercase accent-text mb-3">{eyebrow}</p>
       <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">{title}</h2>
       {description && (
         <p className="text-[#888] text-lg max-w-2xl leading-relaxed">{description}</p>

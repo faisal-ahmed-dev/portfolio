@@ -24,7 +24,7 @@ export function NeonTerminal() {
           viewport={{ once: true }}
           className="mt-12"
         >
-          <GlassCard neon="cyan" className="overflow-hidden scanline">
+          <GlassCard neon="violet" className="overflow-hidden">
             {/* Title bar */}
             <div className="flex items-center gap-3 px-4 py-3 bg-[#0D0D0D] border-b border-white/5">
               <div className="flex gap-1.5">

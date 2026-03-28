@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useRef } from "react";
 
 interface Particle {
@@ -65,7 +65,7 @@ export function MouseParticles() {
         const alpha = p.life;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 240, 255, ${alpha * 0.6})`;
+        ctx.fillStyle = `rgba(139, 92, 246, ${alpha * 0.5})`;
         ctx.fill();
       }
 

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 import { TECH_CATEGORIES } from "@/data/techStack";
 
@@ -16,7 +16,7 @@ export function TechStack() {
                 <motion.span
                   key={tech}
                   whileHover={{ scale: 1.05 }}
-                  className="shrink-0 px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-[#aaa] hover:border-[#00F0FF]/40 hover:text-[#00F0FF] transition-colors cursor-default"
+                  className="shrink-0 px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-[#aaa] hover:border-[#8B5CF6]/40 hover:text-[#A78BFA] transition-colors cursor-default"
                 >
                   {tech}
                 </motion.span>

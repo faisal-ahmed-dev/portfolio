@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full bg-[#0A0A0A] text-[#F0F0F0]">
+      <body className="min-h-full bg-[#0A0A0F] text-[#F0F0F0]">
         <AppProviders>
           {children}
           <Toaster />

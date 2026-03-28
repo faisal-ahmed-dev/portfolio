@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useAtom } from "jotai";
 import { formFieldsAtom, type FieldType, type FormField } from "@/store/atoms";
 import {
@@ -73,7 +73,7 @@ export function FormBuilderCanvas() {
             <button
               key={type}
               onClick={() => addField(type)}
-              className="glass rounded-lg px-3 py-2 text-left text-xs text-[#C0C0C0] hover:text-[#00F0FF] hover:neon-border-cyan transition-all duration-200 flex items-center gap-2"
+              className="glass rounded-lg px-3 py-2 text-left text-xs text-[#C0C0C0] hover:text-[#A78BFA] hover:violet-border transition-all duration-200 flex items-center gap-2"
             >
               <span>{emoji}</span>
               {label}

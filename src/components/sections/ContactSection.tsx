@@ -44,7 +44,7 @@ export function ContactSection() {
             { icon: LinkedinIcon, label: "LinkedIn", value: "in/faisal-ahmed-dev", href: PORTFOLIO.linkedin, isEmail: false },
           ].map(({ icon: Icon, label, value, href, isEmail }) => (
             <motion.div key={label} variants={staggerItem}>
-              <GlassCard neon="cyan" className="p-5 group hover:scale-105 transition-transform cursor-pointer">
+              <GlassCard neon="violet" className="p-5 group hover:scale-105 transition-transform cursor-pointer">
                 {isEmail ? (
                   <button
                     onClick={() => {
@@ -53,15 +53,15 @@ export function ContactSection() {
                     }}
                     className="flex flex-col items-center gap-2 w-full"
                   >
-                    <div className="w-10 h-10 rounded-full bg-[#00F0FF]/10 flex items-center justify-center">
-                      <Icon size={18} className="text-[#00F0FF]" />
+                    <div className="w-10 h-10 rounded-full bg-[#8B5CF6]/10 flex items-center justify-center">
+                      <Icon size={18} className="text-[#A78BFA]" />
                     </div>
                     <p className="text-xs text-[#888]">{label}</p>
                     <p className="text-xs text-white font-medium text-center break-all">{value}</p>
                   </button>
                 ) : (
                   <a href={href} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2">
-                    <div className="w-10 h-10 rounded-full bg-[#00F0FF]/10 flex items-center justify-center text-[#00F0FF]">
+                    <div className="w-10 h-10 rounded-full bg-[#8B5CF6]/10 flex items-center justify-center text-[#A78BFA]">
                       <Icon size={18} />
                     </div>
                     <p className="text-xs text-[#888]">{label}</p>

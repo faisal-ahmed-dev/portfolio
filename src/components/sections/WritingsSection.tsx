@@ -7,9 +7,9 @@ import { NeonBadge } from "@/components/ui/NeonBadge";
 import { WRITINGS } from "@/data/writings";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
-const SOURCE_COLORS: Record<string, "cyan" | "indigo" | "muted"> = {
-  "dev.to": "cyan",
-  Hashnode: "indigo",
+const SOURCE_COLORS: Record<string, "violet" | "muted"> = {
+  "dev.to": "violet",
+  Hashnode: "muted",
   Medium: "muted",
   Personal: "muted",
 };
@@ -33,7 +33,7 @@ export function WritingsSection() {
         >
           {WRITINGS.map((article) => (
             <motion.div key={article.id} variants={staggerItem}>
-              <GlassCard className="p-6 group hover:neon-border-cyan transition-all duration-300 h-full flex flex-col">
+              <GlassCard className="p-6 group hover:violet-border transition-all duration-300 h-full flex flex-col">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <NeonBadge variant={SOURCE_COLORS[article.source] ?? "muted"}>
                     {article.source}
@@ -44,7 +44,7 @@ export function WritingsSection() {
                   </span>
                 </div>
 
-                <h3 className="text-white font-semibold text-sm leading-snug mb-2 group-hover:text-[#00F0FF] transition-colors">
+                <h3 className="text-white font-semibold text-sm leading-snug mb-2 group-hover:text-[#A78BFA] transition-colors">
                   {article.title}
                 </h3>
 
@@ -62,7 +62,7 @@ export function WritingsSection() {
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#555] hover:text-[#00F0FF] transition-colors"
+                    className="text-[#555] hover:text-[#8B5CF6] transition-colors"
                     aria-label="Read article"
                   >
                     <ExternalLink size={14} />

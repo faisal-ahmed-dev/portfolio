@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -10,7 +10,7 @@ const LAYERS = [
   {
     id: "ui",
     label: "UI Layer",
-    color: "#00F0FF",
+    color: "#8B5CF6",
     description: "React 19 components, Framer Motion animations, Radix UI primitives",
     items: ["React 19", "Next.js App Router", "Framer Motion", "Tailwind CSS v4", "Radix UI"],
     depth: 1,
@@ -18,7 +18,7 @@ const LAYERS = [
   {
     id: "state",
     label: "State Layer",
-    color: "#00C8D0",
+    color: "#7C3AED",
     description: "Jotai atoms for global state, TanStack Query for server state, local useState for UI",
     items: ["Jotai", "TanStack Query", "useState", "Context API"],
     depth: 2,
@@ -26,7 +26,7 @@ const LAYERS = [
   {
     id: "domain",
     label: "Domain Layer",
-    color: "#A06FD0",
+    color: "#9333EA",
     description: "Business logic — entities, use cases, domain services. Zero framework dependencies.",
     items: ["Entities", "Use Cases", "Domain Services", "Repository Interfaces"],
     depth: 3,
@@ -34,7 +34,7 @@ const LAYERS = [
   {
     id: "infra",
     label: "Infrastructure Layer",
-    color: "#7B2CBF",
+    color: "#6D28D9",
     description: "Database access, external APIs, storage adapters, notification services",
     items: ["Prisma ORM", "IndexedDB", "REST / tRPC", "Notification Service"],
     depth: 4,

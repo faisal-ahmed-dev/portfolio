@@ -39,16 +39,16 @@ export function ProjectSimulator() {
           {PROJECTS.map((project) => (
             <motion.div key={project.id} variants={staggerItem}>
               <GlassCard
-                neon={project.hasSimulator ? "cyan" : "none"}
+                neon={project.hasSimulator ? "violet" : "none"}
                 className={cn("p-5 h-full", project.hasSimulator && "cursor-pointer hover:scale-[1.02] transition-transform")}
                 onClick={() => {
                   if (project.simulatorKey) setActiveTab(project.simulatorKey);
                 }}
               >
                 <div className="flex items-start justify-between mb-3">
-                  <NeonBadge variant={project.hasSimulator ? "cyan" : "muted"}>{project.type}</NeonBadge>
+                  <NeonBadge variant={project.hasSimulator ? "violet" : "muted"}>{project.type}</NeonBadge>
                   {project.hasSimulator && (
-                    <span className="text-[10px] text-[#00F0FF] font-mono">LIVE</span>
+                    <span className="text-[10px] text-[#A78BFA] font-mono">LIVE</span>
                   )}
                 </div>
                 <h3 className="text-white font-bold text-sm mb-2">{project.title}</h3>
@@ -69,7 +69,7 @@ export function ProjectSimulator() {
         </motion.div>
 
         {/* Simulator */}
-        <GlassCard neon="cyan" className="p-0 overflow-hidden">
+        <GlassCard neon="violet" className="p-0 overflow-hidden">
           {/* Tab bar */}
           <div className="flex border-b border-white/5">
             {TABS.map((tab) => (
@@ -79,7 +79,7 @@ export function ProjectSimulator() {
                 className={cn(
                   "px-6 py-4 text-sm font-medium transition-all duration-200 flex items-center gap-2",
                   activeTab === tab.key
-                    ? "text-[#00F0FF] border-b-2 border-[#00F0FF] bg-[#00F0FF]/5"
+                    ? "text-[#A78BFA] border-b-2 border-[#8B5CF6] bg-[#8B5CF6]/5"
                     : "text-[#555] hover:text-[#888]"
                 )}
               >

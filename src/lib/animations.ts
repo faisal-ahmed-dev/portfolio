@@ -1,4 +1,4 @@
-import type { Variants } from "framer-motion";
+﻿import type { Variants } from "framer-motion";
 
 export const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -55,9 +55,9 @@ export const heroTitle: Variants = {
 };
 
 export const glowPulse: Variants = {
-  initial: { boxShadow: "0 0 10px rgba(0,240,255,0.3)" },
+  initial: { boxShadow: "0 0 10px rgba(0,255,170,0.3)" },
   animate: {
-    boxShadow: ["0 0 10px rgba(0,240,255,0.3)", "0 0 30px rgba(0,240,255,0.7)", "0 0 10px rgba(0,240,255,0.3)"],
+    boxShadow: ["0 0 10px rgba(0,255,170,0.3)", "0 0 30px rgba(0,255,170,0.7)", "0 0 10px rgba(0,255,170,0.3)"],
     transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
   },
 };

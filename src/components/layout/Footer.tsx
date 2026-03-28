@@ -19,7 +19,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <p className="text-lg font-bold gradient-text">{PORTFOLIO.name}</p>
+            <p className="text-lg font-bold text-white">{PORTFOLIO.name}</p>
             <p className="text-sm text-[#555] mt-1">{PORTFOLIO.title}</p>
             <p className="text-xs text-[#444] mt-1">{PORTFOLIO.phone}</p>
           </div>
@@ -29,7 +29,7 @@ export function Footer() {
               href={PORTFOLIO.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#555] hover:text-[#00F0FF] transition-colors"
+              className="text-[#555] hover:text-[#8B5CF6] transition-colors"
               aria-label="GitHub"
             >
               <GithubIcon size={20} />
@@ -38,14 +38,14 @@ export function Footer() {
               href={PORTFOLIO.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#555] hover:text-[#00F0FF] transition-colors"
+              className="text-[#555] hover:text-[#8B5CF6] transition-colors"
               aria-label="LinkedIn"
             >
               <LinkedinIcon size={20} />
             </a>
             <a
               href={`mailto:${PORTFOLIO.email}`}
-              className="text-[#555] hover:text-[#00F0FF] transition-colors"
+              className="text-[#555] hover:text-[#8B5CF6] transition-colors"
               aria-label="Email"
             >
               <Mail size={20} />

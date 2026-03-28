@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import { ArrowDown, ExternalLink, ChevronRight, Download } from "lucide-react";
-import { CyberGrid } from "@/components/background/CyberGrid";
 import { NeonButton } from "@/components/ui/NeonButton";
 import { PORTFOLIO } from "@/data/portfolio";
 import { HERO_TECH_BADGES } from "@/data/techStack";
@@ -10,12 +9,11 @@ import { staggerContainer, staggerItem } from "@/lib/animations";
 export function Hero() {
   return (
     <section id="hero" className="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center overflow-hidden px-4 py-20">
-      <CyberGrid />
 
-      {/* Radial glow */}
+      {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00F0FF]/5 rounded-full blur-[120px]" />
-        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-[#7B2CBF]/8 rounded-full blur-[80px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#8B5CF6]/8 rounded-full blur-[140px]" />
+        <div className="absolute top-2/3 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-[#7C3AED]/4 rounded-full blur-[100px]" />
       </div>
 
       <motion.div
@@ -27,7 +25,7 @@ export function Hero() {
         {/* Eyebrow */}
         <motion.p
           variants={staggerItem}
-          className="text-xs font-bold tracking-[0.3em] uppercase gradient-text mb-6"
+          className="text-xs font-bold tracking-[0.3em] uppercase accent-text mb-6"
         >
           Frontend · Fullstack · 3S
         </motion.p>
@@ -37,7 +35,7 @@ export function Hero() {
           <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-[#888]">
             Full-Stack Engineer
           </span>
-          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#00F0FF]/10 border border-[#00F0FF]/20 text-[#00F0FF]">
+          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#8B5CF6]/10 border border-[#8B5CF6]/20 text-[#A78BFA]">
             2 yrs exp
           </span>
           <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-[#888]">
@@ -50,8 +48,8 @@ export function Hero() {
           variants={staggerItem}
           className="text-6xl sm:text-7xl md:text-8xl font-black tracking-tight mb-4"
         >
-          <span className="gradient-text">{PORTFOLIO.name.split(" ")[0]}</span>{" "}
-          <span className="gradient-text">{PORTFOLIO.name.split(" ")[1]}</span>
+          <span className="text-white">{PORTFOLIO.name.split(" ")[0]}</span>{" "}
+          <span className="text-white">{PORTFOLIO.name.split(" ")[1]}</span>
         </motion.h1>
 
         {/* Tagline */}
@@ -70,13 +68,13 @@ export function Hero() {
           className="text-[#888] text-lg mb-4 max-w-xl mx-auto leading-relaxed"
         >
           {PORTFOLIO.yearsExp} years @ {PORTFOLIO.company} · POS for 300+ restaurants ·{" "}
-          <span className="text-[#00F0FF]">Remote · Open to KSA</span>
+          <span className="text-[#A78BFA]">Remote · Open to KSA</span>
         </motion.p>
 
         {/* Tech badges */}
         <motion.div variants={staggerItem} className="flex flex-wrap gap-2 justify-center mb-10">
           {HERO_TECH_BADGES.map((tech) => (
-            <span key={tech} className="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-[#ccc] hover:border-[#00F0FF]/40 hover:text-[#00F0FF] transition-colors">
+            <span key={tech} className="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-[#ccc] hover:border-[#8B5CF6]/40 hover:text-[#A78BFA] transition-colors">
               {tech}
             </span>
           ))}
@@ -106,7 +104,7 @@ export function Hero() {
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="text-[#555] hover:text-[#00F0FF] transition-colors cursor-pointer"
+          className="text-[#555] hover:text-[#8B5CF6] transition-colors cursor-pointer"
         >
           <ArrowDown size={24} />
         </motion.div>

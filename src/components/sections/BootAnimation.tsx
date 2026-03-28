@@ -13,13 +13,11 @@ export function BootAnimation() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, filter: "blur(20px)", scale: 1.02 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-[100] bg-[#0A0A0A] flex flex-col items-center justify-center p-8"
+          className="fixed inset-0 z-[100] bg-[#0A0A0F] flex flex-col items-center justify-center p-8"
         >
-          <div className="cyber-grid absolute inset-0 opacity-30" />
-
           <div className="relative z-10 w-full max-w-xl font-mono">
             {/* ASCII border */}
-            <div className="text-[#00F0FF]/40 text-xs mb-6 leading-5 hidden sm:block">
+            <div className="text-[#8B5CF6]/40 text-xs mb-6 leading-5 hidden sm:block">
               {`╔${"═".repeat(50)}╗`}
               <br />
               {`║   PORTFOLIO OS v2.0  ·  Faisal Ahmed${" ".repeat(13)}║`}
@@ -39,8 +37,8 @@ export function BootAnimation() {
                     line.type === "title"
                       ? "text-white font-bold text-sm"
                       : line.type === "final"
-                      ? "text-[#00F0FF] font-bold text-sm neon-text-glow mt-2"
-                      : "text-[#00A0B0] text-xs"
+                      ? "text-[#A78BFA] font-bold text-sm violet-text-glow mt-2"
+                      : "text-[#7C6FA0] text-xs"
                   }
                 >
                   {line.text}
@@ -51,9 +49,9 @@ export function BootAnimation() {
             {/* Progress bar */}
             {progress > 0 && (
               <div className="mt-6">
-                <div className="h-1 bg-[#1E1E1E] rounded-full overflow-hidden">
+                <div className="h-1 bg-[#1C1C28] rounded-full overflow-hidden">
                   <motion.div
-                    className="h-full bg-gradient-to-r from-[#00F0FF] to-[#7B2CBF]"
+                    className="h-full bg-gradient-to-r from-[#7C3AED] to-[#A78BFA]"
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
                     transition={{ duration: 0.05 }}

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, type KeyboardEvent } from "react";
 
 interface TerminalInputProps {
@@ -17,7 +17,7 @@ export function TerminalInput({ onExecute }: TerminalInputProps) {
 
   return (
     <div className="flex items-center gap-2 mt-3 border-t border-white/5 pt-3">
-      <span className="text-[#00F0FF] text-xs font-mono shrink-0">visitor@portfolio:~$</span>
+      <span className="text-[#8B5CF6] text-xs font-mono shrink-0">visitor@portfolio:~$</span>
       <input
         type="text"
         value={value}

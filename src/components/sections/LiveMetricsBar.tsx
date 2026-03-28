@@ -8,8 +8,8 @@ export function LiveMetricsBar() {
   return (
     <section className="relative py-12 border-y border-white/5 overflow-hidden">
       {/* Gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00F0FF]/40 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#7B2CBF]/40 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8B5CF6]/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#7C3AED]/20 to-transparent" />
 
       <motion.div
         variants={staggerContainer}
@@ -20,7 +20,7 @@ export function LiveMetricsBar() {
       >
         {METRICS.map((metric) => (
           <motion.div key={metric.id} variants={staggerItem} className="text-center">
-            <p className="text-4xl md:text-5xl font-black gradient-text">
+            <p className="text-4xl md:text-5xl font-black text-white">
               <AnimatedCounter
                 value={metric.value}
                 suffix={metric.suffix}

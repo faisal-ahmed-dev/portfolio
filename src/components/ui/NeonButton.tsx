@@ -26,16 +26,16 @@ export function NeonButton({
   ...props
 }: NeonButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-200 cursor-pointer select-none",
-    size === "sm" && "px-4 py-2 text-sm",
-    size === "md" && "px-6 py-3 text-base",
-    size === "lg" && "px-8 py-4 text-lg",
+    "inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 cursor-pointer select-none",
+    size === "sm" && "px-4 py-2 text-sm rounded-lg",
+    size === "md" && "px-6 py-3 text-base rounded-full",
+    size === "lg" && "px-8 py-4 text-lg rounded-full",
     variant === "primary" &&
-      "bg-gradient-to-r from-[#00F0FF] to-[#7B2CBF] text-black hover:opacity-90 hover:scale-105 neon-glow-cyan",
+      "bg-white text-black hover:bg-white/90 hover:scale-105",
     variant === "secondary" &&
-      "glass neon-border-cyan text-[#00F0FF] hover:bg-[#00F0FF]/10 hover:scale-105",
+      "glass violet-border text-[#A78BFA] hover:bg-[#8B5CF6]/10 hover:scale-105",
     variant === "ghost" &&
-      "text-[#888] hover:text-[#00F0FF] hover:bg-[#00F0FF]/5",
+      "text-[#6B7280] hover:text-[#A78BFA] hover:bg-[#8B5CF6]/5 rounded-lg",
     className
   );
 

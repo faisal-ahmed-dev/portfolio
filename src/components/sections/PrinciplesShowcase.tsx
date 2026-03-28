@@ -26,12 +26,12 @@ export function PrinciplesShowcase() {
           {PRINCIPLES.map((principle) => (
             <motion.div key={principle.id} variants={staggerItem} className="shrink-0 w-80">
               <GlassCard
-                neon={principle.color === "cyan" ? "cyan" : principle.color === "indigo" ? "indigo" : "cyan"}
+                neon="violet"
                 className="p-6 h-full"
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-[#00F0FF]/20 to-[#7B2CBF]/20 flex items-center justify-center border border-white/10">
-                    <span className="text-xs font-black gradient-text">{principle.acronym}</span>
+                  <div className="shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-[#8B5CF6]/20 to-[#7C3AED]/10 flex items-center justify-center border border-white/10">
+                    <span className="text-xs font-black text-[#A78BFA]">{principle.acronym}</span>
                   </div>
                   <div>
                     <h3 className="text-white font-bold text-sm">{principle.title}</h3>

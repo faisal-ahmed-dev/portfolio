@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useAtom } from "jotai";
 import { posOrderAtom, posTotalAtom } from "@/store/atoms";
 import { motion, AnimatePresence } from "framer-motion";
@@ -72,7 +72,7 @@ export function POSOrderPanel() {
                     <Plus size={8} className="text-[#888]" />
                   </button>
                 </div>
-                <span className="text-[10px] text-[#00F0FF] w-12 text-right">
+                <span className="text-[10px] text-[#A78BFA] w-12 text-right">
                   SAR {orderItem.item.price * orderItem.qty}
                 </span>
               </motion.div>
@@ -86,7 +86,7 @@ export function POSOrderPanel() {
         <div className="mt-4 pt-3 border-t border-white/5">
           <div className="flex justify-between mb-3">
             <span className="text-xs text-[#888]">Total</span>
-            <span className="text-sm font-bold gradient-text">SAR {total}</span>
+            <span className="text-sm font-bold text-[#A78BFA]">SAR {total}</span>
           </div>
           <NeonButton
             variant="primary"

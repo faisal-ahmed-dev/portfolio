@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical, Trash2 } from "lucide-react";
@@ -35,7 +35,7 @@ export function FormBuilderField({ field, onRemove }: FormBuilderFieldProps) {
       <div
         {...attributes}
         {...listeners}
-        className="text-[#444] hover:text-[#00F0FF] cursor-grab active:cursor-grabbing shrink-0"
+        className="text-[#444] hover:text-[#8B5CF6] cursor-grab active:cursor-grabbing shrink-0"
       >
         <GripVertical size={16} />
       </div>
