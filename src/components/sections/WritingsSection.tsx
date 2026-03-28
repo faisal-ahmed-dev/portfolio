@@ -4,12 +4,13 @@ import { ExternalLink, Calendar } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TonalCard } from "@/components/ui/TonalCard";
 import { AppBadge } from "@/components/ui/AppBadge";
-import { WRITINGS } from "@/data/writings";
+import { useWritings } from "@/hooks/useVariantData";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 export function WritingsSection() {
+  const WRITINGS = useWritings();
   return (
-    <section id="writings" className="py-32 px-6 lg:px-8">
+    <section id="writings" className="py-16 sm:py-32 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="Writing"
@@ -26,7 +27,7 @@ export function WritingsSection() {
         >
           {WRITINGS.map((article) => (
             <motion.div key={article.id} variants={staggerItem}>
-              <TonalCard hover shadow ghostBorder className="p-6 group h-full flex flex-col">
+              <TonalCard hover shadow ghostBorder className="p-4 sm:p-6 group h-full flex flex-col">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <AppBadge variant="accent">{article.source}</AppBadge>
                   <span className="flex items-center gap-1 text-xs text-[#52525b]">

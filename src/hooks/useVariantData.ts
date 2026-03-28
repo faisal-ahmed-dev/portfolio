@@ -1,28 +1,36 @@
 "use client";
 import { useMemo } from "react";
 import { useVariant } from "@/components/providers/VariantProvider";
+import { useDataOverrides } from "@/components/providers/DataOverrideProvider";
 import { PORTFOLIO } from "@/data/portfolio";
 import { PROJECTS } from "@/data/projects";
 import { EXPERIENCE } from "@/data/experience";
 import { SERVICES } from "@/data/services";
 import { METRICS } from "@/data/metrics";
 import { TESTIMONIALS } from "@/data/testimonials";
+import { WRITINGS } from "@/data/writings";
+import { CERTIFICATIONS } from "@/data/certifications";
+import { GITHUB_STATS, PINNED_REPOS } from "@/data/openSource";
 import { TECH_CATEGORIES, HERO_TECH_BADGES } from "@/data/techStack";
 import type { Project } from "@/types/portfolio.types";
 
 export function usePortfolioData() {
+  const overrides = useDataOverrides();
   const variant = useVariant();
   return useMemo(() => {
-    if (!variant?.portfolio) return PORTFOLIO;
-    return { ...PORTFOLIO, ...variant.portfolio };
-  }, [variant]);
+    const base = overrides.portfolio ?? PORTFOLIO;
+    if (!variant?.portfolio) return base;
+    return { ...base, ...variant.portfolio };
+  }, [overrides, variant]);
 }
 
 export function useProjects(): Project[] {
+  const overrides = useDataOverrides();
   const variant = useVariant();
   return useMemo(() => {
+    const base = overrides.projects ?? PROJECTS;
     const hidden = new Set(variant?.hideProjectIds ?? []);
-    const filtered = PROJECTS.filter((p) => !hidden.has(p.id));
+    const filtered = base.filter((p) => !hidden.has(p.id));
 
     if (!variant?.featuredProjectIds) return filtered;
 
@@ -33,25 +41,49 @@ export function useProjects(): Project[] {
       (p) => !variant.featuredProjectIds!.includes(p.id)
     );
     return [...featured, ...rest];
-  }, [variant]);
+  }, [overrides, variant]);
 }
 
 export function useExperience() {
+  const overrides = useDataOverrides();
   const variant = useVariant();
-  return variant?.hideSections?.includes("experience") ? [] : EXPERIENCE;
+  if (variant?.hideSections?.includes("experience")) return [];
+  return overrides.experience ?? EXPERIENCE;
 }
 
 export function useServices() {
+  const overrides = useDataOverrides();
   const variant = useVariant();
-  return variant?.hideSections?.includes("services") ? [] : SERVICES;
+  if (variant?.hideSections?.includes("services")) return [];
+  return overrides.services ?? SERVICES;
 }
 
 export function useMetrics() {
-  return METRICS;
+  const overrides = useDataOverrides();
+  return overrides.metrics ?? METRICS;
 }
 
 export function useTestimonials() {
-  return TESTIMONIALS;
+  const overrides = useDataOverrides();
+  return overrides.testimonials ?? TESTIMONIALS;
+}
+
+export function useWritings() {
+  const overrides = useDataOverrides();
+  return overrides.writings ?? WRITINGS;
+}
+
+export function useCertifications() {
+  const overrides = useDataOverrides();
+  return overrides.certifications ?? CERTIFICATIONS;
+}
+
+export function useOpenSource() {
+  const overrides = useDataOverrides();
+  return {
+    githubStats: overrides.openSource?.githubStats ?? GITHUB_STATS,
+    pinnedRepos: overrides.openSource?.pinnedRepos ?? PINNED_REPOS,
+  };
 }
 
 export function useTechCategories() {

@@ -10,7 +10,7 @@ export function TestimonialsSection() {
   if (TESTIMONIALS.length === 0) return null;
 
   return (
-    <section id="testimonials" className="py-32 px-6 lg:px-8">
+    <section id="testimonials" className="py-16 sm:py-32 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
           eyebrow="Social Proof"
@@ -27,8 +27,8 @@ export function TestimonialsSection() {
         >
           {TESTIMONIALS.map((t) => (
             <motion.div key={t.id} variants={staggerItem}>
-              <TonalCard glass shadow className="p-6 relative">
-                <span className="absolute top-4 right-5 text-5xl font-black text-[#222228] select-none leading-none">
+              <TonalCard glass shadow className="p-4 sm:p-6 relative">
+                <span className="absolute top-3 right-4 text-3xl sm:text-5xl font-black text-[#222228] select-none leading-none">
                   &ldquo;
                 </span>
 

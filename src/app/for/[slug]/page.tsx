@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getVariant, getAllVariantSlugs } from "@/data/variants";
+import { loadDataOverrides } from "@/data/overrides";
 import { PortfolioPage } from "@/components/pages/PortfolioPage";
 
 export const dynamicParams = true;
@@ -35,5 +36,6 @@ export default async function ForCompanyPage({
   const { slug } = await params;
   const variant = getVariant(slug);
   if (!variant) notFound();
-  return <PortfolioPage variant={variant} />;
+  const overrides = loadDataOverrides();
+  return <PortfolioPage variant={variant} dataOverrides={overrides} />;
 }

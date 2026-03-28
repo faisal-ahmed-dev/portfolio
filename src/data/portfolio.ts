@@ -1,4 +1,6 @@
-export const PORTFOLIO = {
+import type { Portfolio } from "@/types/portfolio.types";
+
+export const PORTFOLIO: Portfolio = {
   name: "Faisal Ahmed",
   title: "Software Engineer",
   company: "3S, Software Solution Service",

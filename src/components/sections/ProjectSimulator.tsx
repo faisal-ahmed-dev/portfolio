@@ -29,7 +29,7 @@ export function ProjectSimulator() {
   const visibleProjects = showAll ? projects : featured;
 
   return (
-    <section id="projects" className="py-32 px-6 lg:px-8">
+    <section id="projects" className="py-16 sm:py-32 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="Projects"
@@ -105,7 +105,7 @@ export function ProjectSimulator() {
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
                 className={cn(
-                  "px-6 py-4 text-sm font-medium transition-all duration-200 flex items-center gap-2",
+                  "px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-1.5 sm:gap-2",
                   activeTab === tab.key
                     ? "text-[#60a5fa] border-b-2 border-[#3b82f6] bg-[rgba(59,130,246,0.05)]"
                     : "text-[#52525b] hover:text-[#a1a1aa]"
@@ -118,7 +118,7 @@ export function ProjectSimulator() {
           </div>
 
           {/* Content */}
-          <div className="p-6">
+          <div className="p-3 sm:p-6">
             <motion.div
               key={activeTab}
               initial={{ opacity: 0, y: 8 }}

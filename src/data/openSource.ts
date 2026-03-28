@@ -1,20 +1,4 @@
-export interface GitHubStat {
-  label: string;
-  value: string;
-  description: string;
-}
-
-export interface PinnedRepo {
-  id: string;
-  name: string;
-  description: string;
-  stars: number;
-  forks: number;
-  language: string;
-  languageColor: string;
-  url: string;
-  topics: string[];
-}
+import type { GitHubStat, PinnedRepo } from "@/types/portfolio.types";
 
 export const GITHUB_STATS: GitHubStat[] = [
   { label: "Public Repos", value: "20+", description: "Open source projects" },

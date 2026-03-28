@@ -1,16 +1,4 @@
-export interface Experience {
-  id: string;
-  company: string;
-  role: string;
-  period: string;
-  duration: string;
-  location: string;
-  type: "full-time" | "contract" | "freelance";
-  description: string;
-  highlights: string[];
-  tech: string[];
-  current: boolean;
-}
+import type { Experience } from "@/types/portfolio.types";
 
 export const EXPERIENCE: Experience[] = [
   {

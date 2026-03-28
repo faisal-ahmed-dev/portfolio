@@ -10,7 +10,7 @@ import { staggerContainer, staggerItem } from "@/lib/animations";
 export function ExperienceTimeline() {
   const EXPERIENCE = useExperience();
   return (
-    <section id="experience" className="py-32 px-6 lg:px-8">
+    <section id="experience" className="py-16 sm:py-32 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <SectionHeader
           eyebrow="Career"
@@ -34,10 +34,10 @@ export function ExperienceTimeline() {
           />
 
           {EXPERIENCE.map((exp) => (
-            <motion.div key={exp.id} variants={staggerItem} className="pl-14 relative mb-8 last:mb-0">
+            <motion.div key={exp.id} variants={staggerItem} className="pl-10 sm:pl-14 relative mb-8 last:mb-0">
               {/* Timeline dot */}
               <div
-                className={`absolute left-0 top-5 flex items-center justify-center w-8 h-8 rounded-full ${
+                className={`absolute left-0 top-5 flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full ${
                   exp.current
                     ? "bg-[rgba(52,211,153,0.12)] ring-2 ring-emerald-400/20"
                     : "bg-[#131316]"
@@ -50,12 +50,12 @@ export function ExperienceTimeline() {
                 />
               </div>
 
-              <TonalCard hover shadow ghostBorder className="p-6">
+              <TonalCard hover shadow ghostBorder className="p-4 sm:p-6">
                 {/* Header */}
                 <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-[#f4f4f5] font-bold text-lg tracking-tight">{exp.role}</h3>
+                      <h3 className="text-[#f4f4f5] font-bold text-sm sm:text-lg tracking-tight">{exp.role}</h3>
                       {exp.current && <AppBadge variant="status">Now</AppBadge>}
                     </div>
                     <p className="gradient-text font-semibold text-sm">{exp.company}</p>

@@ -17,7 +17,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
 export function ServicesSection() {
   const services = useServices();
   return (
-    <section id="services" className="py-32 px-6 lg:px-8">
+    <section id="services" className="py-16 sm:py-32 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
           eyebrow="What I Do"
@@ -36,7 +36,7 @@ export function ServicesSection() {
             const Icon = ICON_MAP[service.icon] ?? Monitor;
             return (
               <motion.div key={service.id} variants={staggerItem}>
-                <TonalCard hover shadow ghostBorder className="p-6 h-full group">
+                <TonalCard hover shadow ghostBorder className="p-4 sm:p-6 h-full group">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="shrink-0 w-10 h-10 rounded-xl bg-[#1a1a1f] flex items-center justify-center group-hover:bg-[#222228] transition-colors">
                       <Icon size={18} className="text-[#a1a1aa] group-hover:text-[#60a5fa] transition-colors" />

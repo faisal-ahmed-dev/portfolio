@@ -1,10 +1,4 @@
-export interface Service {
-  id: string;
-  icon: string;
-  title: string;
-  description: string;
-  capabilities: string[];
-}
+import type { Service } from "@/types/portfolio.types";
 
 export const SERVICES: Service[] = [
   {

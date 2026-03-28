@@ -5,13 +5,14 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TonalCard } from "@/components/ui/TonalCard";
 import { AppBadge } from "@/components/ui/AppBadge";
 import { AppButton } from "@/components/ui/AppButton";
-import { GITHUB_STATS, PINNED_REPOS } from "@/data/openSource";
-import { PORTFOLIO } from "@/data/portfolio";
+import { usePortfolioData, useOpenSource } from "@/hooks/useVariantData";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 export function OpenSourceSection() {
+  const PORTFOLIO = usePortfolioData();
+  const { githubStats: GITHUB_STATS, pinnedRepos: PINNED_REPOS } = useOpenSource();
   return (
-    <section id="open-source" className="py-32 px-6 lg:px-8">
+    <section id="open-source" className="py-16 sm:py-32 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
           eyebrow="Open Source"
@@ -25,12 +26,12 @@ export function OpenSourceSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-14 grid grid-cols-3 gap-4 mb-10"
+          className="mt-14 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-10"
         >
           {GITHUB_STATS.map((stat, i) => (
             <motion.div key={i} variants={staggerItem}>
-              <TonalCard glass shadow className="p-5 text-center">
-                <p className="text-3xl font-black tracking-[-0.04em] gradient-text">{stat.value}</p>
+              <TonalCard glass shadow className="p-3 sm:p-5 text-center">
+                <p className="text-2xl sm:text-3xl font-black tracking-[-0.04em] gradient-text">{stat.value}</p>
                 <p className="text-sm font-medium text-[#a1a1aa] mt-1">{stat.label}</p>
                 <p className="text-xs text-[#52525b] mt-0.5">{stat.description}</p>
               </TonalCard>
@@ -65,7 +66,7 @@ export function OpenSourceSection() {
           >
             {PINNED_REPOS.map((repo) => (
               <motion.div key={repo.id} variants={staggerItem}>
-                <TonalCard hover shadow ghostBorder className="p-5 group">
+                <TonalCard hover shadow ghostBorder className="p-4 sm:p-5 group">
                   <div className="flex items-start justify-between mb-2">
                     <p className="font-mono text-sm text-[#60a5fa] font-medium">{repo.name}</p>
                     <a

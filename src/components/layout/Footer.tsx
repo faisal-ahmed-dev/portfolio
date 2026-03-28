@@ -1,6 +1,7 @@
+"use client";
 import { Mail } from "lucide-react";
 import { GradientLine } from "@/components/decorative/GradientLine";
-import { PORTFOLIO } from "@/data/portfolio";
+import { usePortfolioData } from "@/hooks/useVariantData";
 
 const GithubIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -15,6 +16,7 @@ const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
 );
 
 export function Footer() {
+  const PORTFOLIO = usePortfolioData();
   return (
     <footer className="mt-20 py-12">
       <GradientLine direction="horizontal" className="opacity-40 mb-12" />

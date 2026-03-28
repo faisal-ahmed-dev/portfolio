@@ -6,13 +6,13 @@ import { AppButton } from "@/components/ui/AppButton";
 import { AmbientPool } from "@/components/background/AmbientPool";
 import { AnimatedGradientOverlay } from "@/components/decorative/AnimatedGradientOverlay";
 import { GradientLine } from "@/components/decorative/GradientLine";
-import { PORTFOLIO } from "@/data/portfolio";
 import { useVariant } from "@/components/providers/VariantProvider";
-import { useHeroBadges } from "@/hooks/useVariantData";
+import { usePortfolioData, useHeroBadges } from "@/hooks/useVariantData";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import { cn } from "@/lib/cn";
 
 export function Hero() {
+  const PORTFOLIO = usePortfolioData();
   const variant = useVariant();
   const heroBadges = useHeroBadges();
   const highlightSet = new Set(variant?.highlightTech ?? []);
@@ -29,7 +29,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center overflow-hidden px-6 py-32"
+      className="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 py-16 sm:py-32"
     >
       <AnimatedGradientOverlay />
       <AmbientPool size={900} opacity={0.08} x="40%" y="35%" color="blue" />
@@ -48,7 +48,7 @@ export function Hero() {
         animate="visible"
         className="relative z-10 max-w-4xl mx-auto text-center"
       >
-        <motion.div variants={staggerItem} className="mb-6">
+        <motion.div variants={staggerItem} className="mb-4 sm:mb-6">
           <div className="relative inline-block rounded-full p-[2px] bg-gradient-to-br from-[#3b82f6] to-[#10b981]">
             <Image
               src="/faisal-ahmed.png"
@@ -56,21 +56,21 @@ export function Hero() {
               width={120}
               height={120}
               priority
-              className="rounded-full object-cover w-[120px] h-[120px] bg-[#09090b]"
+              className="rounded-full object-cover w-[88px] h-[88px] sm:w-[120px] sm:h-[120px] bg-[#09090b]"
             />
           </div>
         </motion.div>
 
         <motion.p
           variants={staggerItem}
-          className="font-mono text-xs text-[#52525b] tracking-[0.2em] uppercase mb-6"
+          className="font-mono text-[10px] sm:text-xs text-[#52525b] tracking-[0.2em] uppercase mb-4 sm:mb-6"
         >
           {eyebrow}
         </motion.p>
 
         <motion.h1
           variants={staggerItem}
-          className="text-7xl sm:text-8xl md:text-9xl font-black tracking-[-0.04em] mb-5"
+          className="text-5xl sm:text-8xl md:text-9xl font-black tracking-[-0.04em] mb-3 sm:mb-5"
         >
           <span className="text-[#f4f4f5]">
             {PORTFOLIO.name.split(" ")[0]}
@@ -80,8 +80,8 @@ export function Hero() {
           </span>
         </motion.h1>
 
-        <motion.div variants={staggerItem} className="mb-6 relative inline-block">
-          <p className="text-3xl sm:text-4xl font-bold text-[#f4f4f5] leading-tight tracking-[-0.03em]">
+        <motion.div variants={staggerItem} className="mb-4 sm:mb-6 relative inline-block">
+          <p className="text-xl sm:text-3xl md:text-4xl font-bold text-[#f4f4f5] leading-tight tracking-[-0.03em]">
             {tagline}
           </p>
           <svg
@@ -112,7 +112,7 @@ export function Hero() {
 
         <motion.p
           variants={staggerItem}
-          className="text-[#a1a1aa] text-lg mb-8 max-w-xl mx-auto leading-relaxed"
+          className="text-[#a1a1aa] text-sm sm:text-lg mb-6 sm:mb-8 max-w-xl mx-auto leading-relaxed"
         >
           {variant?.hero?.subTagline ? (
             subTagline
@@ -128,7 +128,7 @@ export function Hero() {
 
         <motion.div
           variants={staggerItem}
-          className="flex flex-wrap gap-2 justify-center mb-10"
+          className="flex flex-wrap gap-1.5 sm:gap-2 justify-center mb-6 sm:mb-10"
         >
           {heroBadges.map((tech) => {
             const isHighlighted = highlightSet.has(tech.name);
@@ -136,7 +136,7 @@ export function Hero() {
               <span
                 key={tech.name}
                 className={cn(
-                  "px-3 py-1 rounded-full text-xs font-mono bg-[#131316] ghost-border hover:bg-[#1a1a1f] hover:text-[#f4f4f5] transition-all duration-200 inline-flex items-center gap-1.5",
+                  "px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono bg-[#131316] ghost-border hover:bg-[#1a1a1f] hover:text-[#f4f4f5] transition-all duration-200 inline-flex items-center gap-1 sm:gap-1.5",
                   isHighlighted
                     ? "text-[#f4f4f5] ring-1 ring-blue-500/40 shadow-[0_0_8px_rgba(59,130,246,0.3)]"
                     : "text-[#a1a1aa]"
@@ -151,7 +151,7 @@ export function Hero() {
 
         <motion.div
           variants={staggerItem}
-          className="flex flex-wrap gap-3 justify-center"
+          className="flex flex-wrap gap-2 sm:gap-3 justify-center"
         >
           <AppButton variant="gradient" size="lg" as="a" href="#projects">
             View My Work <ExternalLink size={16} />

@@ -2,15 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
 import { parseVariant } from "@/lib/variant-schema";
+import { authenticate } from "@/lib/api-auth";
 
 const VARIANTS_DIR = path.join(process.cwd(), "content", "variants");
-
-function authenticate(request: NextRequest): boolean {
-  const key = request.headers.get("x-api-key");
-  const secret = process.env.VARIANT_SECRET_KEY;
-  if (!secret || !key) return false;
-  return key === secret;
-}
 
 export async function GET(request: NextRequest) {
   if (!authenticate(request)) {

@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { AppButton } from "@/components/ui/AppButton";
-import { PORTFOLIO } from "@/data/portfolio";
+import { usePortfolioData } from "@/hooks/useVariantData";
 
 export function Navbar() {
+  const PORTFOLIO = usePortfolioData();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 

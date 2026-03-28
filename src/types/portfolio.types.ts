@@ -29,6 +29,95 @@ export interface Principle {
   color: "cyan" | "indigo" | "mixed";
 }
 
+export interface Portfolio {
+  name: string;
+  title: string;
+  company: string;
+  tagline: string;
+  availability: string;
+  email: string;
+  phone: string;
+  github: string;
+  linkedin: string;
+  location: string;
+  yearsExp: number;
+  cvPath: string;
+}
+
+export interface Experience {
+  id: string;
+  company: string;
+  role: string;
+  period: string;
+  duration: string;
+  location: string;
+  type: "full-time" | "contract" | "freelance";
+  description: string;
+  highlights: string[];
+  tech: string[];
+  current: boolean;
+}
+
+export interface Service {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  capabilities: string[];
+}
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  avatar?: string;
+  quote: string;
+  relationship?: string;
+}
+
+export interface Certification {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  credentialId?: string;
+  skills: string[];
+}
+
+export interface GitHubStat {
+  label: string;
+  value: string;
+  description: string;
+}
+
+export interface PinnedRepo {
+  id: string;
+  name: string;
+  description: string;
+  stars: number;
+  forks: number;
+  language: string;
+  languageColor: string;
+  url: string;
+  topics: string[];
+}
+
+export interface DataOverrides {
+  portfolio?: Portfolio;
+  experience?: Experience[];
+  projects?: Project[];
+  metrics?: Metric[];
+  services?: Service[];
+  testimonials?: Testimonial[];
+  writings?: WritingArticle[];
+  certifications?: Certification[];
+  openSource?: {
+    githubStats?: GitHubStat[];
+    pinnedRepos?: PinnedRepo[];
+  };
+}
+
 export interface WritingArticle {
   id: string;
   title: string;

@@ -6,7 +6,7 @@ import { TonalCard } from "@/components/ui/TonalCard";
 import { AppButton } from "@/components/ui/AppButton";
 import { AmbientPool } from "@/components/background/AmbientPool";
 import { AnimatedGradientOverlay } from "@/components/decorative/AnimatedGradientOverlay";
-import { PORTFOLIO } from "@/data/portfolio";
+import { usePortfolioData } from "@/hooks/useVariantData";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import { toast } from "sonner";
 
@@ -23,8 +23,9 @@ const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
 );
 
 export function ContactSection() {
+  const PORTFOLIO = usePortfolioData();
   return (
-    <section id="contact" className="relative py-40 px-6 lg:px-8 overflow-hidden">
+    <section id="contact" className="relative py-20 sm:py-40 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <AnimatedGradientOverlay />
       <AmbientPool size={700} opacity={0.06} x="50%" y="50%" color="blue" />
       <AmbientPool size={400} opacity={0.04} x="30%" y="60%" color="emerald" />
@@ -47,7 +48,7 @@ export function ContactSection() {
         >
           <a
             href={`mailto:${PORTFOLIO.email}`}
-            className="text-2xl md:text-3xl font-bold gradient-text hover:opacity-80 transition-opacity tracking-tight break-all"
+            className="text-lg sm:text-2xl md:text-3xl font-bold gradient-text hover:opacity-80 transition-opacity tracking-tight break-all"
           >
             {PORTFOLIO.email}
           </a>
@@ -66,7 +67,7 @@ export function ContactSection() {
             { icon: LinkedinIcon, label: "LinkedIn", value: "in/faisal-ahmed-dev", href: PORTFOLIO.linkedin, isEmail: false },
           ].map(({ icon: Icon, label, value, href, isEmail }) => (
             <motion.div key={label} variants={staggerItem}>
-              <TonalCard glass shadow className="p-5 group cursor-pointer">
+              <TonalCard glass shadow className="p-4 sm:p-5 group cursor-pointer">
                 {isEmail ? (
                   <button
                     onClick={() => {

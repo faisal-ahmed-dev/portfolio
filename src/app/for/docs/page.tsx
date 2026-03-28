@@ -54,6 +54,26 @@ const CURL_EXAMPLE = `curl -X POST https://your-domain.com/api/variants \\
 const CURL_DELETE = `curl -X DELETE "https://your-domain.com/api/variants?slug=company-name" \\
   -H "x-api-key: YOUR_SECRET_KEY"`;
 
+const DATA_SECTIONS = [
+  "portfolio", "experience", "projects", "metrics", "services",
+  "testimonials", "writings", "certifications", "openSource",
+];
+
+const CURL_DATA_GET = `curl https://your-domain.com/api/portfolio \\
+  -H "x-api-key: YOUR_SECRET_KEY"`;
+
+const CURL_DATA_POST = `curl -X POST https://your-domain.com/api/portfolio \\
+  -H "Content-Type: application/json" \\
+  -H "x-api-key: YOUR_SECRET_KEY" \\
+  -d '{
+    "metrics": [
+      { "id": "products", "label": "Products Built", "value": 6, "suffix": "", "description": "Shipped to production" }
+    ]
+  }'`;
+
+const CURL_DATA_DELETE = `curl -X DELETE "https://your-domain.com/api/portfolio?section=metrics" \\
+  -H "x-api-key: YOUR_SECRET_KEY"`;
+
 const FIELDS: { name: string; type: string; required: boolean; desc: string }[] = [
   { name: "slug", type: "string", required: true, desc: "URL slug — becomes /for/{slug}. Lowercase, hyphens, no spaces." },
   { name: "company", type: "string", required: true, desc: "Company name displayed in metadata and cover letter." },
@@ -200,6 +220,57 @@ export default function VariantDocsPage() {
 
         <Section title="Delete a Variant">
           <CodeBlock>{CURL_DELETE}</CodeBlock>
+        </Section>
+
+        {/* ─── Portfolio Data API ─── */}
+        <div className="mt-16 pt-12 border-t border-[rgba(255,255,255,0.05)]">
+          <h1 className="text-4xl font-black tracking-tight mb-2">Portfolio Data API</h1>
+          <p className="text-[#a1a1aa] mb-12">
+            Update the default portfolio page (<Code>/</Code>) content via API. Same secret key.
+          </p>
+        </div>
+
+        <Section title="Endpoints">
+          <p className="text-[#a1a1aa] text-sm mb-4">
+            All endpoints require the <Code>x-api-key</Code> header.
+          </p>
+          <div className="space-y-4">
+            <div>
+              <Badge color="blue">GET</Badge> <Code>/api/portfolio</Code>
+              <p className="text-[#52525b] text-xs mt-1">Returns all section data with source metadata (override vs default).</p>
+            </div>
+            <div>
+              <Badge>POST</Badge> <Code>/api/portfolio</Code>
+              <p className="text-[#52525b] text-xs mt-1">Partial update — only send sections you want to change.</p>
+            </div>
+            <div>
+              <Badge color="red">DELETE</Badge> <Code>/api/portfolio?section=metrics</Code>
+              <p className="text-[#52525b] text-xs mt-1">Remove override, revert section to hardcoded default.</p>
+            </div>
+          </div>
+        </Section>
+
+        <Section title="Editable Sections">
+          <div className="flex flex-wrap gap-1.5">
+            {DATA_SECTIONS.map((s) => (
+              <span key={s} className="text-[10px] font-mono text-[#a1a1aa] bg-[#131316] px-2 py-1 rounded">{s}</span>
+            ))}
+          </div>
+          <p className="text-[#52525b] text-xs mt-3">
+            <Code>techStack</Code> is excluded (contains React component references that can&apos;t be serialized).
+          </p>
+        </Section>
+
+        <Section title="Get Current Data">
+          <CodeBlock>{CURL_DATA_GET}</CodeBlock>
+        </Section>
+
+        <Section title="Update a Section">
+          <CodeBlock>{CURL_DATA_POST}</CodeBlock>
+        </Section>
+
+        <Section title="Revert to Default">
+          <CodeBlock>{CURL_DATA_DELETE}</CodeBlock>
         </Section>
 
         <div className="mt-16 pt-8 border-t border-[rgba(255,255,255,0.05)]">

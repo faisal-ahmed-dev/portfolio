@@ -3,14 +3,15 @@ import { motion } from "framer-motion";
 import { Award } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TonalCard } from "@/components/ui/TonalCard";
-import { CERTIFICATIONS } from "@/data/certifications";
+import { useCertifications } from "@/hooks/useVariantData";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 export function CertificationsSection() {
+  const CERTIFICATIONS = useCertifications();
   if (CERTIFICATIONS.length === 0) return null;
 
   return (
-    <section id="certifications" className="py-32 px-6 lg:px-8">
+    <section id="certifications" className="py-16 sm:py-32 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
           eyebrow="Credentials"
@@ -27,7 +28,7 @@ export function CertificationsSection() {
         >
           {CERTIFICATIONS.map((cert) => (
             <motion.div key={cert.id} variants={staggerItem}>
-              <TonalCard glass shadow className="p-5 h-full flex flex-col">
+              <TonalCard glass shadow className="p-4 sm:p-5 h-full flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-8 h-8 rounded-lg bg-[#1a1a1f] flex items-center justify-center shrink-0">
                     <Award size={14} className="text-[#a78bfa]" />

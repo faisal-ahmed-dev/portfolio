@@ -3,9 +3,10 @@ import { useAtom } from "jotai";
 import { announcementDismissedAtom } from "@/store/atoms";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PORTFOLIO } from "@/data/portfolio";
+import { usePortfolioData } from "@/hooks/useVariantData";
 
 export function AnnouncementBar() {
+  const PORTFOLIO = usePortfolioData();
   const [dismissed, setDismissed] = useAtom(announcementDismissedAtom);
 
   return (

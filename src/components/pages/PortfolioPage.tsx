@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { useAtomValue } from "jotai";
 import { bootCompletedAtom } from "@/store/atoms";
 import { VariantProvider, useVariant } from "@/components/providers/VariantProvider";
+import { DataOverrideProvider } from "@/components/providers/DataOverrideProvider";
 import { BootAnimation } from "@/components/sections/BootAnimation";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Navbar } from "@/components/layout/Navbar";
@@ -19,7 +20,7 @@ import { CertificationsSection } from "@/components/sections/CertificationsSecti
 import { ContactSection } from "@/components/sections/ContactSection";
 import { CoverLetterSection } from "@/components/sections/CoverLetterSection";
 import { Footer } from "@/components/layout/Footer";
-import type { JobVariant } from "@/types/portfolio.types";
+import type { JobVariant, DataOverrides } from "@/types/portfolio.types";
 
 const ProjectSimulator = dynamic(
   () =>
@@ -110,10 +111,18 @@ function PortfolioContent() {
   );
 }
 
-export function PortfolioPage({ variant }: { variant: JobVariant | null }) {
+export function PortfolioPage({
+  variant,
+  dataOverrides = {},
+}: {
+  variant: JobVariant | null;
+  dataOverrides?: DataOverrides;
+}) {
   return (
-    <VariantProvider variant={variant}>
-      <PortfolioContent />
-    </VariantProvider>
+    <DataOverrideProvider overrides={dataOverrides}>
+      <VariantProvider variant={variant}>
+        <PortfolioContent />
+      </VariantProvider>
+    </DataOverrideProvider>
   );
 }

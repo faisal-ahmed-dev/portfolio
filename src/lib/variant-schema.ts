@@ -33,11 +33,11 @@ export const jobVariantSchema = z.object({
   ogDescription: z.string().optional(),
 });
 
-export type ParseResult =
-  | { success: true; data: z.infer<typeof jobVariantSchema> }
+export type ParseResult<T = unknown> =
+  | { success: true; data: T }
   | { success: false; errors: string[] };
 
-export function parseVariant(raw: unknown): ParseResult {
+export function parseVariant(raw: unknown): ParseResult<z.infer<typeof jobVariantSchema>> {
   const result = jobVariantSchema.safeParse(raw);
   if (result.success) {
     return { success: true, data: result.data };
