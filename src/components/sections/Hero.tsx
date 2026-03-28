@@ -1,19 +1,31 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowDown, ExternalLink, ChevronRight, Download } from "lucide-react";
-import { NeonButton } from "@/components/ui/NeonButton";
+import { ArrowDown, ExternalLink, Download } from "lucide-react";
+import { AppButton } from "@/components/ui/AppButton";
+import { AmbientPool } from "@/components/background/AmbientPool";
+import { AnimatedGradientOverlay } from "@/components/decorative/AnimatedGradientOverlay";
+import { GradientLine } from "@/components/decorative/GradientLine";
 import { PORTFOLIO } from "@/data/portfolio";
 import { HERO_TECH_BADGES } from "@/data/techStack";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 export function Hero() {
   return (
-    <section id="hero" className="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center overflow-hidden px-4 py-20">
+    <section id="hero" className="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center overflow-hidden px-6 py-32">
 
-      {/* Ambient glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#8B5CF6]/8 rounded-full blur-[140px]" />
-        <div className="absolute top-2/3 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-[#7C3AED]/4 rounded-full blur-[100px]" />
+      {/* Animated gradient overlay */}
+      <AnimatedGradientOverlay />
+
+      {/* Ambient pools — blue + emerald */}
+      <AmbientPool size={900} opacity={0.08} x="40%" y="35%" color="blue" />
+      <AmbientPool size={500} opacity={0.06} x="65%" y="65%" color="emerald" />
+
+      {/* Decorative vertical gradient lines */}
+      <div className="absolute top-[10%] bottom-[10%] left-[20%] hidden lg:block">
+        <GradientLine direction="vertical" className="h-full opacity-30" />
+      </div>
+      <div className="absolute top-[15%] bottom-[15%] right-[20%] hidden lg:block">
+        <GradientLine direction="vertical" className="h-full opacity-20" />
       </div>
 
       <motion.div
@@ -25,72 +37,75 @@ export function Hero() {
         {/* Eyebrow */}
         <motion.p
           variants={staggerItem}
-          className="text-xs font-bold tracking-[0.3em] uppercase accent-text mb-6"
+          className="font-mono text-xs text-[#52525b] tracking-[0.2em] uppercase mb-6"
         >
-          Frontend · Fullstack · 3S
+          Software Engineer · 2 yrs @ 3S · Dhaka, BD
         </motion.p>
-
-        {/* Role badges */}
-        <motion.div variants={staggerItem} className="flex items-center justify-center gap-2 mb-4">
-          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-[#888]">
-            Full-Stack Engineer
-          </span>
-          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#8B5CF6]/10 border border-[#8B5CF6]/20 text-[#A78BFA]">
-            2 yrs exp
-          </span>
-          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-[#888]">
-            @ 3S
-          </span>
-        </motion.div>
 
         {/* Name */}
         <motion.h1
           variants={staggerItem}
-          className="text-6xl sm:text-7xl md:text-8xl font-black tracking-tight mb-4"
+          className="text-7xl sm:text-8xl md:text-9xl font-black tracking-[-0.04em] mb-5"
         >
-          <span className="text-white">{PORTFOLIO.name.split(" ")[0]}</span>{" "}
-          <span className="text-white">{PORTFOLIO.name.split(" ")[1]}</span>
+          <span className="text-[#f4f4f5]">{PORTFOLIO.name.split(" ")[0]}</span>{" "}
+          <span className="gradient-text">{PORTFOLIO.name.split(" ")[1]}</span>
         </motion.h1>
 
         {/* Tagline */}
-        <motion.div variants={staggerItem} className="mb-8">
-          <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-            builds systems
+        <motion.div variants={staggerItem} className="mb-6 relative inline-block">
+          <p className="text-3xl sm:text-4xl font-bold text-[#f4f4f5] leading-tight tracking-[-0.03em]">
+            builds systems that scale.
           </p>
-          <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-            that scale.
-          </p>
+          {/* SVG wave underline */}
+          <svg className="absolute -bottom-2 left-0 w-full h-2 opacity-50" viewBox="0 0 300 8" preserveAspectRatio="none">
+            <path
+              d="M0 4 Q 37.5 0, 75 4 T 150 4 T 225 4 T 300 4"
+              fill="none"
+              stroke="url(#gradient-underline)"
+              strokeWidth="2"
+            />
+            <defs>
+              <linearGradient id="gradient-underline" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#3b82f6" />
+                <stop offset="100%" stopColor="#10b981" />
+              </linearGradient>
+            </defs>
+          </svg>
         </motion.div>
 
         {/* Sub-tagline */}
         <motion.p
           variants={staggerItem}
-          className="text-[#888] text-lg mb-4 max-w-xl mx-auto leading-relaxed"
+          className="text-[#a1a1aa] text-lg mb-8 max-w-xl mx-auto leading-relaxed"
         >
-          {PORTFOLIO.yearsExp} years @ {PORTFOLIO.company} · POS for 300+ restaurants ·{" "}
-          <span className="text-[#A78BFA]">Remote · Open to KSA</span>
+          {PORTFOLIO.yearsExp} years building POS systems, multi-tenant SaaS, and React Native apps at{" "}
+          <span className="text-[#60a5fa]">{PORTFOLIO.company}</span>.{" "}
+          Open to KSA full-time roles.
         </motion.p>
 
         {/* Tech badges */}
         <motion.div variants={staggerItem} className="flex flex-wrap gap-2 justify-center mb-10">
           {HERO_TECH_BADGES.map((tech) => (
-            <span key={tech} className="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-[#ccc] hover:border-[#8B5CF6]/40 hover:text-[#A78BFA] transition-colors">
+            <span
+              key={tech}
+              className="px-3 py-1 rounded-full text-xs font-mono bg-[#131316] text-[#a1a1aa] ghost-border hover:bg-[#1a1a1f] hover:text-[#f4f4f5] transition-all duration-200"
+            >
               {tech}
             </span>
           ))}
         </motion.div>
 
         {/* CTAs */}
-        <motion.div variants={staggerItem} className="flex flex-wrap gap-4 justify-center">
-          <NeonButton variant="primary" size="lg" as="a" href="#projects">
-            View My Work <ExternalLink size={18} />
-          </NeonButton>
-          <NeonButton variant="secondary" size="lg" as="a" href="#architecture">
-            Explore Architecture <ChevronRight size={18} />
-          </NeonButton>
-          <NeonButton variant="ghost" size="lg" as="a" href={PORTFOLIO.cvPath} download>
-            <Download size={18} /> Download CV
-          </NeonButton>
+        <motion.div variants={staggerItem} className="flex flex-wrap gap-3 justify-center">
+          <AppButton variant="gradient" size="lg" as="a" href="#projects">
+            View My Work <ExternalLink size={16} />
+          </AppButton>
+          <AppButton variant="secondary" size="lg" as="a" href="#architecture">
+            Architecture
+          </AppButton>
+          <AppButton variant="ghost" size="lg" as="a" href={PORTFOLIO.cvPath} download>
+            <Download size={16} /> Download CV
+          </AppButton>
         </motion.div>
       </motion.div>
 
@@ -104,9 +119,9 @@ export function Hero() {
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="text-[#555] hover:text-[#8B5CF6] transition-colors cursor-pointer"
+          className="text-[#3f3f46] hover:text-[#60a5fa] transition-colors cursor-pointer"
         >
-          <ArrowDown size={24} />
+          <ArrowDown size={22} />
         </motion.div>
       </motion.div>
     </section>

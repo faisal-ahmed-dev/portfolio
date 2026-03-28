@@ -1,10 +1,9 @@
 import type { NavLink } from "@/types/portfolio.types";
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "About", href: "#hero" },
+  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Architecture", href: "#architecture" },
-  { label: "Terminal", href: "#terminal" },
   { label: "Writings", href: "#writings" },
   { label: "Contact", href: "#contact" },
 ];

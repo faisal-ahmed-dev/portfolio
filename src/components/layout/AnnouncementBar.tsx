@@ -17,19 +17,22 @@ export function AnnouncementBar() {
           exit={{ height: 0, opacity: 0 }}
           className="relative z-50 overflow-hidden"
         >
-          <div className="bg-gradient-to-r from-[#8B5CF6]/8 via-[#7C3AED]/5 to-[#8B5CF6]/8 border-b border-[#8B5CF6]/15">
-            <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-[#8B5CF6] animate-pulse" />
-              <p className="text-sm text-[#A0A0A0]">
-                <span className="text-[#A78BFA] font-medium">{PORTFOLIO.availability}</span>
+          <div className="bg-[#0c0c0f] border-b border-[rgba(255,255,255,0.05)]">
+            <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <p className="text-sm text-[#a1a1aa]">
+                <span className="text-[#60a5fa] font-medium">{PORTFOLIO.availability}</span>
                 {" — "}
-                <a href="#contact" className="underline underline-offset-2 hover:text-[#A78BFA] transition-colors">
+                <a
+                  href="#contact"
+                  className="underline underline-offset-2 hover:text-[#f4f4f5] transition-colors"
+                >
                   Let&apos;s talk ↗
                 </a>
               </p>
               <button
                 onClick={() => setDismissed(true)}
-                className="absolute right-4 text-[#555] hover:text-white transition-colors"
+                className="absolute right-6 text-[#3f3f46] hover:text-[#f4f4f5] transition-colors"
                 aria-label="Dismiss"
               >
                 <X size={14} />

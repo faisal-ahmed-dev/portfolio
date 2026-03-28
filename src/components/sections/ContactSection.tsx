@@ -2,11 +2,12 @@
 import { motion } from "framer-motion";
 import { Mail, ArrowRight, Download } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GlassCard } from "@/components/ui/GlassCard";
-import { NeonButton } from "@/components/ui/NeonButton";
+import { TonalCard } from "@/components/ui/TonalCard";
+import { AppButton } from "@/components/ui/AppButton";
+import { AmbientPool } from "@/components/background/AmbientPool";
+import { AnimatedGradientOverlay } from "@/components/decorative/AnimatedGradientOverlay";
 import { PORTFOLIO } from "@/data/portfolio";
 import { staggerContainer, staggerItem } from "@/lib/animations";
-import { SectionGlow } from "@/components/background/SectionGlow";
 import { toast } from "sonner";
 
 const GithubIcon = ({ size = 18 }: { size?: number }) => (
@@ -23,22 +24,41 @@ const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
 
 export function ContactSection() {
   return (
-    <section id="contact" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <SectionGlow intensity="strong" position="both" />
+    <section id="contact" className="relative py-40 px-6 lg:px-8 overflow-hidden">
+      <AnimatedGradientOverlay />
+      <AmbientPool size={700} opacity={0.06} x="50%" y="50%" color="blue" />
+      <AmbientPool size={400} opacity={0.04} x="30%" y="60%" color="emerald" />
+
       <div className="relative z-10 max-w-3xl mx-auto text-center">
         <SectionHeader
           eyebrow="Get In Touch"
           title="Let's Build Something"
-          description="Open to KSA full-time roles, contract projects, and consulting. Iqama sponsorship welcome. If you have a complex problem, let's talk."
+          description="Open to KSA full-time roles, contract projects, and consulting. Iqama sponsorship welcome."
           centered
         />
+
+        {/* Large email link */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="mt-10 mb-10"
+        >
+          <a
+            href={`mailto:${PORTFOLIO.email}`}
+            className="text-2xl md:text-3xl font-bold gradient-text hover:opacity-80 transition-opacity tracking-tight break-all"
+          >
+            {PORTFOLIO.email}
+          </a>
+        </motion.div>
 
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-12 grid sm:grid-cols-3 gap-4"
+          className="grid sm:grid-cols-3 gap-3"
         >
           {[
             { icon: Mail, label: "Email", value: PORTFOLIO.email, href: `mailto:${PORTFOLIO.email}`, isEmail: true },
@@ -46,7 +66,7 @@ export function ContactSection() {
             { icon: LinkedinIcon, label: "LinkedIn", value: "in/faisal-ahmed-dev", href: PORTFOLIO.linkedin, isEmail: false },
           ].map(({ icon: Icon, label, value, href, isEmail }) => (
             <motion.div key={label} variants={staggerItem}>
-              <GlassCard neon="violet" className="p-5 group hover:scale-105 transition-transform cursor-pointer">
+              <TonalCard glass shadow className="p-5 group cursor-pointer">
                 {isEmail ? (
                   <button
                     onClick={() => {
@@ -55,39 +75,41 @@ export function ContactSection() {
                     }}
                     className="flex flex-col items-center gap-2 w-full"
                   >
-                    <div className="w-10 h-10 rounded-full bg-[#8B5CF6]/10 flex items-center justify-center">
-                      <Icon size={18} className="text-[#A78BFA]" />
+                    <div className="w-10 h-10 rounded-xl bg-[#1a1a1f] flex items-center justify-center group-hover:bg-[#222228] transition-colors">
+                      <Icon size={16} className="text-[#a1a1aa] group-hover:text-[#60a5fa] transition-colors" />
                     </div>
-                    <p className="text-xs text-[#888]">{label}</p>
-                    <p className="text-xs text-white font-medium text-center break-all">{value}</p>
+                    <p className="text-xs text-[#52525b]">{label}</p>
+                    <p className="text-xs text-[#f4f4f5] font-medium text-center break-all">{value}</p>
                   </button>
                 ) : (
                   <a href={href} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2">
-                    <div className="w-10 h-10 rounded-full bg-[#8B5CF6]/10 flex items-center justify-center text-[#A78BFA]">
-                      <Icon size={18} />
+                    <div className="w-10 h-10 rounded-xl bg-[#1a1a1f] flex items-center justify-center group-hover:bg-[#222228] transition-colors">
+                      <span className="text-[#a1a1aa] group-hover:text-[#60a5fa] transition-colors">
+                        <Icon size={16} />
+                      </span>
                     </div>
-                    <p className="text-xs text-[#888]">{label}</p>
-                    <p className="text-xs text-white font-medium text-center break-all">{value}</p>
+                    <p className="text-xs text-[#52525b]">{label}</p>
+                    <p className="text-xs text-[#f4f4f5] font-medium text-center break-all">{value}</p>
                   </a>
                 )}
-              </GlassCard>
+              </TonalCard>
             </motion.div>
           ))}
         </motion.div>
 
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10 flex flex-wrap gap-4 justify-center"
+          transition={{ delay: 0.3 }}
+          className="mt-8 flex flex-wrap gap-3 justify-center"
         >
-          <NeonButton variant="primary" size="lg" as="a" href={`mailto:${PORTFOLIO.email}`}>
-            Send Me an Email <ArrowRight size={18} />
-          </NeonButton>
-          <NeonButton variant="secondary" size="lg" as="a" href={PORTFOLIO.cvPath} download>
-            <Download size={18} /> Download CV
-          </NeonButton>
+          <AppButton variant="gradient" size="lg" as="a" href={`mailto:${PORTFOLIO.email}`}>
+            Send Me an Email <ArrowRight size={16} />
+          </AppButton>
+          <AppButton variant="secondary" size="lg" as="a" href={PORTFOLIO.cvPath} download>
+            <Download size={16} /> Download CV
+          </AppButton>
         </motion.div>
       </div>
     </section>

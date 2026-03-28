@@ -15,7 +15,12 @@
       "Bash(find \"D:\\\\CODEBLOCKS\\\\portfolio\\\\src\\\\components\" -iname \"*tech*\" -o -iname \"*skill*\" 2>/dev/null | head -20)",
       "Bash(cd \"D:\\\\CODEBLOCKS\\\\portfolio\" && powershell -ExecutionPolicy Bypass -File recolor.ps1)",
       "Bash(cd \"D:\\\\CODEBLOCKS\\\\portfolio\" && pnpm run build 2>&1 && Remove-Item recolor.ps1)",
-      "Bash(find D:CODEBLOCKSportfolio -maxdepth 2 -name tailwind.config.* -o -name next.config.*)"
+      "Bash(find D:CODEBLOCKSportfolio -maxdepth 2 -name tailwind.config.* -o -name next.config.*)",
+      "Bash(grep -E \"\\\\.\\(html|css|js|tsx|ts\\)$\")",
+      "Bash(npm run:*)",
+      "Bash(pnpm build:*)",
+      "WebFetch(domain:wibify.agency)",
+      "WebFetch(domain:demo.magic-portfolio.com)"
     ]
   }
 }

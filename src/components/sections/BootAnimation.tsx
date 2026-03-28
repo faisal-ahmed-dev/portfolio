@@ -13,11 +13,14 @@ export function BootAnimation() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, filter: "blur(20px)", scale: 1.02 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-[100] bg-[#0A0A0F] flex flex-col items-center justify-center p-8"
+          className="fixed inset-0 z-[100] bg-[#09090b] flex flex-col items-center justify-center p-8"
         >
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full blur-[80px] bg-[rgba(59,130,246,0.04)]" />
+          </div>
+
           <div className="relative z-10 w-full max-w-xl font-mono">
-            {/* ASCII border */}
-            <div className="text-[#8B5CF6]/40 text-xs mb-6 leading-5 hidden sm:block">
+            <div className="text-[#3f3f46] text-xs mb-6 leading-5 hidden sm:block">
               {`╔${"═".repeat(50)}╗`}
               <br />
               {`║   PORTFOLIO OS v2.0  ·  Faisal Ahmed${" ".repeat(13)}║`}
@@ -25,7 +28,6 @@ export function BootAnimation() {
               {`╚${"═".repeat(50)}╝`}
             </div>
 
-            {/* Lines */}
             <div className="space-y-1 min-h-[220px]">
               {visibleLines.map((line, i) => (
                 <motion.p
@@ -35,10 +37,10 @@ export function BootAnimation() {
                   transition={{ duration: 0.2 }}
                   className={
                     line.type === "title"
-                      ? "text-white font-bold text-sm"
+                      ? "text-[#f4f4f5] font-bold text-sm"
                       : line.type === "final"
-                      ? "text-[#A78BFA] font-bold text-sm violet-text-glow mt-2"
-                      : "text-[#7C6FA0] text-xs"
+                      ? "gradient-text font-bold text-sm mt-2"
+                      : "text-[#52525b] text-xs"
                   }
                 >
                   {line.text}
@@ -46,18 +48,20 @@ export function BootAnimation() {
               ))}
             </div>
 
-            {/* Progress bar */}
             {progress > 0 && (
               <div className="mt-6">
-                <div className="h-1 bg-[#1C1C28] rounded-full overflow-hidden">
+                <div className="h-px bg-[#131316] rounded-full overflow-hidden">
                   <motion.div
-                    className="h-full bg-gradient-to-r from-[#7C3AED] to-[#A78BFA]"
+                    className="h-full"
+                    style={{
+                      background: "linear-gradient(to right, #3b82f6, #10b981)",
+                    }}
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
                     transition={{ duration: 0.05 }}
                   />
                 </div>
-                <p className="text-xs text-[#555] mt-2 font-mono">{Math.round(progress)}% loaded</p>
+                <p className="text-[10px] text-[#3f3f46] mt-2 font-mono">{Math.round(progress)}% loaded</p>
               </div>
             )}
           </div>

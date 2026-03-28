@@ -8,11 +8,14 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { TechStack } from "@/components/sections/TechStack";
 import { LiveMetricsBar } from "@/components/sections/LiveMetricsBar";
+import { ServicesSection } from "@/components/sections/ServicesSection";
+import { ExperienceTimeline } from "@/components/sections/ExperienceTimeline";
 import { PrinciplesShowcase } from "@/components/sections/PrinciplesShowcase";
+import { OpenSourceSection } from "@/components/sections/OpenSourceSection";
 import { WritingsSection } from "@/components/sections/WritingsSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/layout/Footer";
-import { MouseParticles } from "@/components/background/MouseParticles";
 
 // Heavy sections — dynamic import
 const ProjectSimulator = dynamic(
@@ -34,7 +37,6 @@ export default function Home() {
   return (
     <>
       <BootAnimation />
-      <MouseParticles />
 
       {bootCompleted && (
         <div className="relative min-h-screen">
@@ -44,11 +46,15 @@ export default function Home() {
             <Hero />
             <TechStack />
             <LiveMetricsBar />
+            <ServicesSection />
+            <ExperienceTimeline />
             <ProjectSimulator />
             <ArchitectureHologram />
             <NeonTerminal />
             <PrinciplesShowcase />
+            <OpenSourceSection />
             <WritingsSection />
+            <TestimonialsSection />
             <ContactSection />
           </main>
           <Footer />

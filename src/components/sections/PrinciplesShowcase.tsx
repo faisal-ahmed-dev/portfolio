@@ -1,17 +1,15 @@
 "use client";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GlassCard } from "@/components/ui/GlassCard";
+import { TonalCard } from "@/components/ui/TonalCard";
 import { CodeBlock } from "@/components/ui/CodeBlock";
 import { PRINCIPLES } from "@/data/principles";
 import { staggerContainer, staggerItem } from "@/lib/animations";
-import { SectionGlow } from "@/components/background/SectionGlow";
 
 export function PrinciplesShowcase() {
   return (
-    <section id="principles" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <SectionGlow intensity="subtle" position="top" />
-      <div className="relative z-10 max-w-7xl mx-auto">
+    <section id="principles" className="py-32 px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="Engineering Principles"
           title="Code I'm Proud Of"
@@ -23,30 +21,25 @@ export function PrinciplesShowcase() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4"
+          className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-6"
         >
           {PRINCIPLES.map((principle) => (
             <motion.div key={principle.id} variants={staggerItem}>
-              <GlassCard
-                neon="violet"
-                className="p-5 flex flex-col h-full"
-              >
-                {/* Header */}
+              <TonalCard hover shadow className="p-5 flex flex-col h-full">
                 <div className="flex items-start gap-3 mb-4">
-                  <div className="shrink-0 w-9 h-9 rounded-lg bg-gradient-to-br from-[#8B5CF6]/20 to-[#7C3AED]/10 flex items-center justify-center border border-[#8B5CF6]/20">
-                    <span className="text-[10px] font-black text-[#A78BFA]">{principle.acronym}</span>
+                  <div className="shrink-0 w-9 h-9 rounded-xl bg-[#1a1a1f] flex items-center justify-center">
+                    <span className="text-[10px] font-black gradient-text">{principle.acronym}</span>
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-white font-bold text-sm">{principle.title}</h3>
-                    <p className="text-[#666] text-[11px] mt-1 leading-relaxed line-clamp-2">{principle.description}</p>
+                    <h3 className="text-[#f4f4f5] font-bold text-sm">{principle.title}</h3>
+                    <p className="text-[#52525b] text-[11px] mt-1 leading-relaxed line-clamp-2">{principle.description}</p>
                   </div>
                 </div>
 
-                {/* Code */}
                 <div className="flex-1 min-h-0">
                   <CodeBlock code={principle.codeSnippet} language={principle.language} />
                 </div>
-              </GlassCard>
+              </TonalCard>
             </motion.div>
           ))}
         </motion.div>

@@ -2,27 +2,26 @@
 import { motion } from "framer-motion";
 import { METRICS } from "@/data/metrics";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
-import { SectionGlow } from "@/components/background/SectionGlow";
+import { GradientLine } from "@/components/decorative/GradientLine";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 export function LiveMetricsBar() {
   return (
-    <section className="relative py-16 overflow-hidden">
-      <SectionGlow intensity="medium" position="both" />
-      {/* Gradient lines */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8B5CF6]/40 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#7C3AED]/40 to-transparent" />
-
+    <section className="py-28 px-6">
+      <GradientLine direction="horizontal" className="opacity-30 mb-16" />
       <motion.div
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8"
+        className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10"
       >
-        {METRICS.map((metric) => (
-          <motion.div key={metric.id} variants={staggerItem} className="text-center">
-            <p className="text-4xl md:text-5xl font-black text-white">
+        {METRICS.map((metric, i) => (
+          <motion.div key={metric.id} variants={staggerItem} className="text-center relative">
+            {i > 0 && (
+              <div className="hidden md:block absolute left-0 top-1/4 h-1/2 w-px bg-[rgba(255,255,255,0.05)]" />
+            )}
+            <p className="text-6xl font-black tracking-[-0.04em] gradient-text">
               <AnimatedCounter
                 value={metric.value}
                 suffix={metric.suffix}
@@ -30,11 +29,12 @@ export function LiveMetricsBar() {
                 decimals={metric.value % 1 !== 0 ? 1 : 0}
               />
             </p>
-            <p className="text-sm font-semibold text-white mt-1">{metric.label}</p>
-            <p className="text-xs text-[#6B7280] mt-1">{metric.description}</p>
+            <p className="text-sm font-medium text-[#a1a1aa] mt-2">{metric.label}</p>
+            <p className="text-xs text-[#52525b] mt-1">{metric.description}</p>
           </motion.div>
         ))}
       </motion.div>
+      <GradientLine direction="horizontal" className="opacity-30 mt-16" />
     </section>
   );
 }
