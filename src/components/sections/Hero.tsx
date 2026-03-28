@@ -23,7 +23,7 @@ export function Hero() {
     variant?.hero?.tagline ?? "builds systems that scale.";
   const subTagline =
     variant?.hero?.subTagline ??
-    `${PORTFOLIO.yearsExp} years building POS systems, multi-tenant SaaS, and React Native apps at ${PORTFOLIO.company}. Open to KSA full-time roles.`;
+    `${PORTFOLIO.yearsExp} years building POS systems, multi-tenant SaaS, and React Native apps at ${PORTFOLIO.company}. Open to full-time roles.`;
 
   return (
     <section
@@ -107,7 +107,7 @@ export function Hero() {
               {PORTFOLIO.yearsExp} years building POS systems, multi-tenant
               SaaS, and React Native apps at{" "}
               <span className="text-[#60a5fa]">{PORTFOLIO.company}</span>.{" "}
-              Open to KSA full-time roles.
+              Open to full-time roles.
             </>
           )}
         </motion.p>

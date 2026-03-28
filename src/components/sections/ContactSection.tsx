@@ -33,7 +33,7 @@ export function ContactSection() {
         <SectionHeader
           eyebrow="Get In Touch"
           title="Let's Build Something"
-          description="Open to KSA full-time roles, contract projects, and consulting. Iqama sponsorship welcome."
+          description="Open to full-time roles, contract projects, and consulting."
           centered
         />
 

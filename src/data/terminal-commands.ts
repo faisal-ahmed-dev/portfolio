@@ -34,7 +34,7 @@ export const WHOAMI_OUTPUT = [
   "Tech I reach for: Next.js 15, React 19, TypeScript, NestJS,",
   "dnd-kit, Jotai, Prisma, Tailwind CSS, Docker.",
   "",
-  "Open to KSA opportunities · Iqama sponsorship welcome.",
+  "Open to opportunities.",
 ];
 
 export const LS_OUTPUT = [
