@@ -25,6 +25,7 @@ export async function generateMetadata({
     description:
       variant.ogDescription ??
       `Portfolio tailored for ${variant.company}`,
+    alternates: { canonical: `/for/${slug}` },
   };
 }
 

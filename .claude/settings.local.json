@@ -30,7 +30,10 @@
       "Bash(node -e \"const fa = require\\(''react-icons/fa''\\); const keys = Object.keys\\(fa\\).filter\\(k => k.toLowerCase\\(\\).includes\\(''aws''\\)\\); console.log\\(keys\\);\")",
       "Bash(ls:*)",
       "Bash(node -e \"const z = require\\(''zod''\\); console.log\\(Object.keys\\(z\\).slice\\(0,20\\)\\)\")",
-      "Bash(node -e \"import\\(''zod''\\).then\\(z => console.log\\(Object.keys\\(z\\).slice\\(0,20\\)\\)\\)\")"
+      "Bash(node -e \"import\\(''zod''\\).then\\(z => console.log\\(Object.keys\\(z\\).slice\\(0,20\\)\\)\\)\")",
+      "Bash(xargs grep:*)",
+      "Bash(grep -r 'Image from' src/ --include=*.tsx --include=*.ts)",
+      "Bash(wc:*)"
     ]
   }
 }

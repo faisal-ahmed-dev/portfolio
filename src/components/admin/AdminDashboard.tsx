@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
-import { Database, Users } from "lucide-react";
+import { Database, Users, BarChart3 } from "lucide-react";
 import { PortfolioPanel } from "@/components/admin/PortfolioPanel";
 import { VariantPanel } from "@/components/admin/VariantPanel";
+import { AnalyticsPanel } from "@/components/admin/AnalyticsPanel";
 import { cn } from "@/lib/cn";
 
 interface AdminDashboardProps {
@@ -12,6 +13,7 @@ interface AdminDashboardProps {
 const TABS = [
   { key: "portfolio", label: "Portfolio Data", icon: Database },
   { key: "variants", label: "Variants", icon: Users },
+  { key: "analytics", label: "Analytics", icon: BarChart3 },
 ] as const;
 
 type TabKey = (typeof TABS)[number]["key"];
@@ -47,6 +49,7 @@ export function AdminDashboard({ apiKey }: AdminDashboardProps) {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6">
         {activeTab === "portfolio" && <PortfolioPanel apiKey={apiKey} />}
         {activeTab === "variants" && <VariantPanel apiKey={apiKey} />}
+        {activeTab === "analytics" && <AnalyticsPanel apiKey={apiKey} />}
       </div>
     </div>
   );

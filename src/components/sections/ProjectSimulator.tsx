@@ -2,14 +2,14 @@
 import { useState } from "react";
 import { useAtom } from "jotai";
 import { simulatorTabAtom } from "@/store/atoms";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TonalCard } from "@/components/ui/TonalCard";
 import { AppBadge } from "@/components/ui/AppBadge";
 import { useProjects, useFeaturedProjectIds } from "@/hooks/useVariantData";
 import { POSSimulator } from "@/components/simulator/POSSimulator";
 import { FormBuilderSimulator } from "@/components/simulator/FormBuilderSimulator";
-import { staggerContainer, staggerItem } from "@/lib/animations";
+
 import { cn } from "@/lib/cn";
 
 const TABS = [
@@ -38,15 +38,14 @@ export function ProjectSimulator() {
         />
 
         {/* Project cards */}
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4"
-        >
-          {visibleProjects.map((project) => (
-            <motion.div key={project.id} variants={staggerItem}>
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+          {visibleProjects.map((project, i) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: i * 0.05 }}
+            >
               <TonalCard
                 hover
                 shadow={project.hasSimulator}
@@ -82,7 +81,7 @@ export function ProjectSimulator() {
               </TonalCard>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Show more / less toggle */}
         {rest.length > 0 && (
