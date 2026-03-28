@@ -38,6 +38,39 @@ export interface WritingArticle {
   tags: string[];
 }
 
+export interface JobVariant {
+  slug: string;
+  company: string;
+  role: string;
+
+  coverLetter: {
+    greeting: string;
+    paragraphs: string[];
+    closingCta?: string;
+  };
+
+  hero?: {
+    tagline?: string;
+    subTagline?: string;
+    eyebrow?: string;
+  };
+
+  portfolio?: Partial<{
+    title: string;
+    tagline: string;
+    availability: string;
+  }>;
+
+  highlightTech?: string[];
+  featuredProjectIds?: string[];
+  hideProjectIds?: string[];
+  hideSections?: string[];
+  sectionOrder?: string[];
+
+  ogTitle?: string;
+  ogDescription?: string;
+}
+
 export interface NavLink {
   label: string;
   href: string;

@@ -2,10 +2,11 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TonalCard } from "@/components/ui/TonalCard";
-import { TESTIMONIALS } from "@/data/testimonials";
+import { useTestimonials } from "@/hooks/useVariantData";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 export function TestimonialsSection() {
+  const TESTIMONIALS = useTestimonials();
   if (TESTIMONIALS.length === 0) return null;
 
   return (

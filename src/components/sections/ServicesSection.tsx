@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Monitor, Server, Smartphone, Layers } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TonalCard } from "@/components/ui/TonalCard";
-import { SERVICES } from "@/data/services";
+import { useServices } from "@/hooks/useVariantData";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import type { LucideIcon } from "lucide-react";
 
@@ -15,6 +15,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
 };
 
 export function ServicesSection() {
+  const services = useServices();
   return (
     <section id="services" className="py-32 px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
@@ -31,7 +32,7 @@ export function ServicesSection() {
           viewport={{ once: true }}
           className="mt-14 grid md:grid-cols-2 gap-6"
         >
-          {SERVICES.map((service) => {
+          {services.map((service) => {
             const Icon = ICON_MAP[service.icon] ?? Monitor;
             return (
               <motion.div key={service.id} variants={staggerItem}>

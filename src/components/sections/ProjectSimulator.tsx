@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TonalCard } from "@/components/ui/TonalCard";
 import { AppBadge } from "@/components/ui/AppBadge";
-import { PROJECTS } from "@/data/projects";
+import { useProjects, useFeaturedProjectIds } from "@/hooks/useVariantData";
 import { POSSimulator } from "@/components/simulator/POSSimulator";
 import { FormBuilderSimulator } from "@/components/simulator/FormBuilderSimulator";
 import { staggerContainer, staggerItem } from "@/lib/animations";
@@ -18,6 +18,8 @@ const TABS = [
 
 export function ProjectSimulator() {
   const [activeTab, setActiveTab] = useAtom(simulatorTabAtom);
+  const projects = useProjects();
+  const featuredIds = useFeaturedProjectIds();
 
   return (
     <section id="projects" className="py-32 px-6 lg:px-8">
@@ -36,7 +38,7 @@ export function ProjectSimulator() {
           viewport={{ once: true }}
           className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10"
         >
-          {PROJECTS.map((project) => (
+          {projects.map((project) => (
             <motion.div key={project.id} variants={staggerItem}>
               <TonalCard
                 hover
@@ -48,7 +50,12 @@ export function ProjectSimulator() {
                 }}
               >
                 <div className="flex items-start justify-between mb-3">
-                  <AppBadge variant={project.hasSimulator ? "accent" : "default"}>{project.type}</AppBadge>
+                  <div className="flex items-center gap-2">
+                    <AppBadge variant={project.hasSimulator ? "accent" : "default"}>{project.type}</AppBadge>
+                    {featuredIds.has(project.id) && (
+                      <AppBadge variant="status">Relevant</AppBadge>
+                    )}
+                  </div>
                   {project.hasSimulator && (
                     <span className="text-[10px] gradient-text font-mono font-bold">LIVE</span>
                   )}

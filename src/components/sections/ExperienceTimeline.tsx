@@ -4,10 +4,11 @@ import { MapPin, Calendar, Briefcase } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TonalCard } from "@/components/ui/TonalCard";
 import { AppBadge } from "@/components/ui/AppBadge";
-import { EXPERIENCE } from "@/data/experience";
+import { useExperience } from "@/hooks/useVariantData";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 export function ExperienceTimeline() {
+  const EXPERIENCE = useExperience();
   return (
     <section id="experience" className="py-32 px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">

@@ -1,11 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
-import { METRICS } from "@/data/metrics";
+import { useMetrics } from "@/hooks/useVariantData";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { GradientLine } from "@/components/decorative/GradientLine";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 export function LiveMetricsBar() {
+  const METRICS = useMetrics();
   return (
     <section className="py-28 px-6">
       <GradientLine direction="horizontal" className="opacity-30 mb-16" />
