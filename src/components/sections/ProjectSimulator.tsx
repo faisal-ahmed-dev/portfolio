@@ -9,6 +9,7 @@ import { PROJECTS } from "@/data/projects";
 import { POSSimulator } from "@/components/simulator/POSSimulator";
 import { FormBuilderSimulator } from "@/components/simulator/FormBuilderSimulator";
 import { staggerContainer, staggerItem } from "@/lib/animations";
+import { SectionGlow } from "@/components/background/SectionGlow";
 import { cn } from "@/lib/cn";
 
 const TABS = [
@@ -20,8 +21,9 @@ export function ProjectSimulator() {
   const [activeTab, setActiveTab] = useAtom(simulatorTabAtom);
 
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <SectionGlow intensity="subtle" position="bottom" />
+      <div className="relative z-10 max-w-7xl mx-auto">
         <SectionHeader
           eyebrow="Projects"
           title="Live Demos"

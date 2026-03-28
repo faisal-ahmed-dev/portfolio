@@ -6,6 +6,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { NeonButton } from "@/components/ui/NeonButton";
 import { PORTFOLIO } from "@/data/portfolio";
 import { staggerContainer, staggerItem } from "@/lib/animations";
+import { SectionGlow } from "@/components/background/SectionGlow";
 import { toast } from "sonner";
 
 const GithubIcon = ({ size = 18 }: { size?: number }) => (
@@ -22,8 +23,9 @@ const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto text-center">
+    <section id="contact" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <SectionGlow intensity="strong" position="both" />
+      <div className="relative z-10 max-w-3xl mx-auto text-center">
         <SectionHeader
           eyebrow="Get In Touch"
           title="Let's Build Something"

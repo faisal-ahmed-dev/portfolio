@@ -5,6 +5,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/Tooltip";
 import { NeonBadge } from "@/components/ui/NeonBadge";
 import { staggerContainer, staggerItem } from "@/lib/animations";
+import { SectionGlow } from "@/components/background/SectionGlow";
 
 const LAYERS = [
   {
@@ -43,8 +44,9 @@ const LAYERS = [
 
 export function ArchitectureHologram() {
   return (
-    <section id="architecture" className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
+    <section id="architecture" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <SectionGlow intensity="subtle" position="top" />
+      <div className="relative z-10 max-w-5xl mx-auto">
         <SectionHeader
           eyebrow="System Design"
           title="Clean Architecture"

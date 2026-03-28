@@ -18,7 +18,7 @@ export function CodeBlock({ code, language = "typescript", className }: CodeBloc
         </div>
         <span className="text-xs text-[#555] ml-2 font-mono">{language}</span>
       </div>
-      <pre className="p-4 text-sm font-mono leading-relaxed overflow-x-auto bg-[#0D0D0D] text-[#E0E0E0]">
+      <pre className="p-4 text-xs font-mono leading-relaxed overflow-x-auto overflow-y-auto bg-[#0D0D0D] text-[#E0E0E0] max-h-[200px]">
         <code>{code}</code>
       </pre>
     </div>
