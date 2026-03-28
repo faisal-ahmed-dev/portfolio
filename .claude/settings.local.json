@@ -27,7 +27,10 @@
       "Bash(node -e \"const si = require\\(''react-icons/si''\\); const keys = Object.keys\\(si\\).filter\\(k => k.toLowerCase\\(\\).includes\\(''query''\\) || k.toLowerCase\\(\\).includes\\(''tanstack''\\)\\); console.log\\(keys\\);\")",
       "Bash(node -e \"const si = require\\(''react-icons/si''\\); const keys = Object.keys\\(si\\).filter\\(k => k.toLowerCase\\(\\).includes\\(''amazon''\\) || k.toLowerCase\\(\\).includes\\(''aws''\\)\\); console.log\\(keys\\);\")",
       "Bash(node -e \"const si = require\\(''react-icons/si''\\); const keys = Object.keys\\(si\\).filter\\(k => k.toLowerCase\\(\\).includes\\(''cloud''\\)\\); console.log\\(keys\\);\")",
-      "Bash(node -e \"const fa = require\\(''react-icons/fa''\\); const keys = Object.keys\\(fa\\).filter\\(k => k.toLowerCase\\(\\).includes\\(''aws''\\)\\); console.log\\(keys\\);\")"
+      "Bash(node -e \"const fa = require\\(''react-icons/fa''\\); const keys = Object.keys\\(fa\\).filter\\(k => k.toLowerCase\\(\\).includes\\(''aws''\\)\\); console.log\\(keys\\);\")",
+      "Bash(ls:*)",
+      "Bash(node -e \"const z = require\\(''zod''\\); console.log\\(Object.keys\\(z\\).slice\\(0,20\\)\\)\")",
+      "Bash(node -e \"import\\(''zod''\\).then\\(z => console.log\\(Object.keys\\(z\\).slice\\(0,20\\)\\)\\)\")"
     ]
   }
 }

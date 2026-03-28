@@ -2,31 +2,31 @@ import type { Metric } from "@/types/portfolio.types";
 
 export const METRICS: Metric[] = [
   {
-    id: "clients",
-    label: "Live Clients Served",
-    value: 1400,
-    suffix: "+",
-    description: "Restaurants across Orderly product suite",
-  },
-  {
     id: "products",
-    label: "Products Shipped",
+    label: "Products Built & Shipped",
     value: 6,
     suffix: "",
     description: "POS · QR E-Menu · KDS · Feedback · Reports · Printer SDK",
   },
   {
-    id: "customers",
-    label: "End Customers",
-    value: 300,
+    id: "components",
+    label: "Components Engineered",
+    value: 112,
     suffix: "+",
-    description: "dHealth pharma e-commerce in production",
+    description: "Across Orderly POS alone — offline-first, production-grade",
+  },
+  {
+    id: "scale",
+    label: "Clients in Production",
+    value: 1400,
+    suffix: "+",
+    description: "Restaurants running on systems I built",
   },
   {
     id: "experience",
-    label: "Years of Experience",
+    label: "Years Building in Production",
     value: 2,
     suffix: "+",
-    description: "Production engineering since Feb 2024",
+    description: "Full-time engineering since Feb 2024",
   },
 ];

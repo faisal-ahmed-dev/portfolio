@@ -7,6 +7,7 @@ export interface Project {
   highlight: string;
   hasSimulator: boolean;
   simulatorKey?: "pos" | "form-builder";
+  featured?: boolean;
 }
 
 export interface Metric {

@@ -11,6 +11,7 @@ export const PROJECTS: Project[] = [
     highlight: "112+ components",
     hasSimulator: true,
     simulatorKey: "pos",
+    featured: true,
   },
   {
     id: "feedback-saas",
@@ -22,6 +23,7 @@ export const PROJECTS: Project[] = [
     highlight: "Multi-tenant RBAC",
     hasSimulator: true,
     simulatorKey: "form-builder",
+    featured: true,
   },
   {
     id: "qr-ordering",
@@ -32,6 +34,7 @@ export const PROJECTS: Project[] = [
     type: "Platform",
     highlight: "30+ restaurants live",
     hasSimulator: false,
+    featured: true,
   },
   {
     id: "3s-printer",
@@ -82,6 +85,7 @@ export const PROJECTS: Project[] = [
     type: "E-Commerce",
     highlight: "300+ customers",
     hasSimulator: false,
+    featured: true,
   },
   {
     id: "class-finder",

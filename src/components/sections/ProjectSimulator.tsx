@@ -1,7 +1,8 @@
 "use client";
+import { useState } from "react";
 import { useAtom } from "jotai";
 import { simulatorTabAtom } from "@/store/atoms";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TonalCard } from "@/components/ui/TonalCard";
 import { AppBadge } from "@/components/ui/AppBadge";
@@ -18,8 +19,14 @@ const TABS = [
 
 export function ProjectSimulator() {
   const [activeTab, setActiveTab] = useAtom(simulatorTabAtom);
+  const [showAll, setShowAll] = useState(false);
   const projects = useProjects();
   const featuredIds = useFeaturedProjectIds();
+
+  const hasFeatured = projects.some((p) => p.featured);
+  const featured = hasFeatured ? projects.filter((p) => p.featured) : projects;
+  const rest = hasFeatured ? projects.filter((p) => !p.featured) : [];
+  const visibleProjects = showAll ? projects : featured;
 
   return (
     <section id="projects" className="py-32 px-6 lg:px-8">
@@ -36,9 +43,9 @@ export function ProjectSimulator() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10"
+          className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4"
         >
-          {projects.map((project) => (
+          {visibleProjects.map((project) => (
             <motion.div key={project.id} variants={staggerItem}>
               <TonalCard
                 hover
@@ -76,6 +83,18 @@ export function ProjectSimulator() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Show more / less toggle */}
+        {rest.length > 0 && (
+          <div className="flex justify-center mb-10">
+            <button
+              onClick={() => setShowAll((prev) => !prev)}
+              className="text-xs text-[#52525b] hover:text-[#a1a1aa] transition-colors font-mono"
+            >
+              {showAll ? "Show less" : `+ ${rest.length} more projects`}
+            </button>
+          </div>
+        )}
 
         {/* Simulator */}
         <TonalCard glass shadow className="overflow-hidden">

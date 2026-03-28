@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDown, ExternalLink, Download } from "lucide-react";
 import { AppButton } from "@/components/ui/AppButton";
@@ -47,6 +48,19 @@ export function Hero() {
         animate="visible"
         className="relative z-10 max-w-4xl mx-auto text-center"
       >
+        <motion.div variants={staggerItem} className="mb-6">
+          <div className="relative inline-block rounded-full p-[2px] bg-gradient-to-br from-[#3b82f6] to-[#10b981]">
+            <Image
+              src="/faisal-ahmed.png"
+              alt={PORTFOLIO.name}
+              width={120}
+              height={120}
+              priority
+              className="rounded-full object-cover w-[120px] h-[120px] bg-[#09090b]"
+            />
+          </div>
+        </motion.div>
+
         <motion.p
           variants={staggerItem}
           className="font-mono text-xs text-[#52525b] tracking-[0.2em] uppercase mb-6"
@@ -142,8 +156,8 @@ export function Hero() {
           <AppButton variant="gradient" size="lg" as="a" href="#projects">
             View My Work <ExternalLink size={16} />
           </AppButton>
-          <AppButton variant="secondary" size="lg" as="a" href="#architecture">
-            Architecture
+          <AppButton variant="secondary" size="lg" as="a" href="#experience">
+            Experience
           </AppButton>
           <AppButton
             variant="ghost"
