@@ -1,42 +1,57 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Save, RotateCcw, Check, AlertCircle } from "lucide-react";
+import { Save, RotateCcw, Check, AlertCircle, Trash2 } from "lucide-react";
 import { TonalCard } from "@/components/ui/TonalCard";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppBadge } from "@/components/ui/AppBadge";
 import { toast } from "sonner";
 
-interface SectionEditorProps {
-  sectionKey: string;
-  data: unknown;
-  source: "override" | "default";
-  apiKey: string;
-  onUpdate: () => void;
+export interface EditorAction {
+  label: string;
+  variant: "gradient" | "ghost" | "secondary";
+  icon: typeof Save;
+  onClick: (value: string) => Promise<void>;
+  disabled?: (parseError: string | null) => boolean;
+  confirm?: string;
 }
 
-export function SectionEditor({ sectionKey, data, source, apiKey, onUpdate }: SectionEditorProps) {
+interface SectionEditorProps {
+  title: string;
+  badge?: { label: string; variant: "accent" | "default" | "status" };
+  data: unknown;
+  apiKey: string;
+  onSave: (data: unknown, apiKey: string) => Promise<{ ok: boolean; error?: string }>;
+  onDelete?: (apiKey: string) => Promise<{ ok: boolean; error?: string }>;
+  onUpdate: () => void;
+  minHeight?: string;
+}
+
+export function SectionEditor({
+  title,
+  badge,
+  data,
+  apiKey,
+  onSave,
+  onDelete,
+  onUpdate,
+  minHeight = "300px",
+}: SectionEditorProps) {
   const [value, setValue] = useState(() => JSON.stringify(data, null, 2));
   const [saving, setSaving] = useState(false);
-  const [reverting, setReverting] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const parseError = getParseError(value);
 
   async function handleSave() {
     if (parseError) return;
     setSaving(true);
     try {
-      const res = await fetch("/api/portfolio", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-api-key": apiKey },
-        body: JSON.stringify({ [sectionKey]: JSON.parse(value) }),
-      });
-      const json = await res.json();
-      if (!res.ok) {
-        const detail = json.details?.[sectionKey]?.join(", ") ?? json.error;
-        toast.error(`Failed: ${detail}`);
-      } else {
-        toast.success(`${sectionKey} updated`);
+      const result = await onSave(JSON.parse(value), apiKey);
+      if (result.ok) {
+        toast.success(`${title} saved`);
         onUpdate();
+      } else {
+        toast.error(result.error ?? "Save failed");
       }
     } catch {
       toast.error("Network error");
@@ -45,25 +60,21 @@ export function SectionEditor({ sectionKey, data, source, apiKey, onUpdate }: Se
     }
   }
 
-  async function handleRevert() {
-    if (source !== "override") return;
-    setReverting(true);
+  async function handleDelete() {
+    if (!onDelete) return;
+    setDeleting(true);
     try {
-      const res = await fetch(`/api/portfolio?section=${sectionKey}`, {
-        method: "DELETE",
-        headers: { "x-api-key": apiKey },
-      });
-      if (res.ok) {
-        toast.success(`${sectionKey} reverted to default`);
+      const result = await onDelete(apiKey);
+      if (result.ok) {
+        toast.success(`${title} deleted`);
         onUpdate();
       } else {
-        const json = await res.json();
-        toast.error(json.error);
+        toast.error(result.error ?? "Delete failed");
       }
     } catch {
       toast.error("Network error");
     } finally {
-      setReverting(false);
+      setDeleting(false);
     }
   }
 
@@ -76,21 +87,14 @@ export function SectionEditor({ sectionKey, data, source, apiKey, onUpdate }: Se
       <TonalCard className="p-4 sm:p-5">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <h3 className="text-sm font-bold text-[#f4f4f5] font-mono">{sectionKey}</h3>
-            <AppBadge variant={source === "override" ? "accent" : "default"}>
-              {source}
-            </AppBadge>
+            <h3 className="text-sm font-bold text-[#f4f4f5] font-mono">{title}</h3>
+            {badge && <AppBadge variant={badge.variant}>{badge.label}</AppBadge>}
           </div>
           <div className="flex items-center gap-2">
-            {source === "override" && (
-              <AppButton
-                variant="ghost"
-                size="sm"
-                onClick={handleRevert}
-                disabled={reverting}
-              >
-                <RotateCcw size={14} />
-                {reverting ? "..." : "Revert"}
+            {onDelete && (
+              <AppButton variant="ghost" size="sm" onClick={handleDelete} disabled={deleting}>
+                {deleting ? <RotateCcw size={14} className="animate-spin" /> : <Trash2 size={14} />}
+                {deleting ? "..." : "Delete"}
               </AppButton>
             )}
             <AppButton
@@ -115,7 +119,8 @@ export function SectionEditor({ sectionKey, data, source, apiKey, onUpdate }: Se
           value={value}
           onChange={(e) => setValue(e.target.value)}
           spellCheck={false}
-          className="w-full min-h-[300px] rounded-lg bg-[#0c0c0f] border border-[rgba(255,255,255,0.05)] px-4 py-3 text-xs font-mono text-[#a1a1aa] leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-[#3b82f6]/30"
+          style={{ minHeight }}
+          className="w-full rounded-lg bg-[#0c0c0f] border border-[rgba(255,255,255,0.05)] px-4 py-3 text-xs font-mono text-[#a1a1aa] leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-[#3b82f6]/30"
         />
 
         {!parseError && (
