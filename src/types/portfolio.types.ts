@@ -3,7 +3,7 @@ export interface Project {
   title: string;
   description: string;
   tech: string[];
-  type: "POS" | "SaaS" | "Platform" | "Tool" | "E-Commerce";
+  type: "POS" | "SaaS" | "Platform" | "Tool" | "E-Commerce" | "Analytics" | "Dashboard" | "Mobile" | "Desktop";
   highlight: string;
   hasSimulator: boolean;
   simulatorKey?: "pos" | "form-builder";

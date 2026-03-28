@@ -14,6 +14,7 @@ import { PrinciplesShowcase } from "@/components/sections/PrinciplesShowcase";
 import { OpenSourceSection } from "@/components/sections/OpenSourceSection";
 import { WritingsSection } from "@/components/sections/WritingsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { CertificationsSection } from "@/components/sections/CertificationsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/layout/Footer";
 
@@ -55,6 +56,7 @@ export default function Home() {
             <OpenSourceSection />
             <WritingsSection />
             <TestimonialsSection />
+            <CertificationsSection />
             <ContactSection />
           </main>
           <Footer />

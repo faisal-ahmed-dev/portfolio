@@ -87,10 +87,11 @@ export function Hero() {
         <motion.div variants={staggerItem} className="flex flex-wrap gap-2 justify-center mb-10">
           {HERO_TECH_BADGES.map((tech) => (
             <span
-              key={tech}
-              className="px-3 py-1 rounded-full text-xs font-mono bg-[#131316] text-[#a1a1aa] ghost-border hover:bg-[#1a1a1f] hover:text-[#f4f4f5] transition-all duration-200"
+              key={tech.name}
+              className="px-3 py-1 rounded-full text-xs font-mono bg-[#131316] text-[#a1a1aa] ghost-border hover:bg-[#1a1a1f] hover:text-[#f4f4f5] transition-all duration-200 inline-flex items-center gap-1.5"
             >
-              {tech}
+              {tech.icon && <tech.icon className="w-3.5 h-3.5" />}
+              {tech.name}
             </span>
           ))}
         </motion.div>

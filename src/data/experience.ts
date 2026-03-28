@@ -33,4 +33,25 @@ export const EXPERIENCE: Experience[] = [
     ],
     tech: ["Next.js", "NestJS", "TypeScript", "React Native", "PostgreSQL", "Redis", "Docker"],
   },
+  {
+    id: "dhealth",
+    company: "dHealth International",
+    role: "Software Engineer",
+    period: "Feb 2024 — Dec 2024",
+    duration: "11 months",
+    location: "Dhaka, Bangladesh",
+    type: "full-time",
+    current: false,
+    description:
+      "Designed and built a complete e-commerce pharmacy platform with customer profiles, prescription uploads, multi-variant products, and admin tools for SEO, campaigns, and POS integration.",
+    highlights: [
+      "Architected full-stack application with REST APIs serving multiple frontend clients",
+      "Built customer-facing storefront with cart, checkout, order tracking, and prescription upload",
+      "Created POS system for in-store sales with real-time inventory updates",
+      "Integrated multi-vendor functionality with seller dashboards and commission tracking",
+      "Implemented comprehensive security: JWT authentication, RBAC, XSS protection, rate-limiting",
+      "Optimized performance with Redis caching, image compression (Sharp), and lazy loading",
+    ],
+    tech: ["Next.js", "Node.js", "Express.js", "PostgreSQL", "Redis", "Socket.IO", "Docker"],
+  },
 ];

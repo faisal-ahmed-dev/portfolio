@@ -14,11 +14,12 @@ export function TechStack() {
             <div className="flex gap-2 overflow-x-auto scrollbar-none pb-1">
               {cat.techs.map((tech) => (
                 <motion.span
-                  key={tech}
+                  key={tech.name}
                   whileHover={{ scale: 1.04 }}
-                  className="shrink-0 px-3 py-1 rounded-full text-xs font-mono bg-[#131316] text-[#a1a1aa] ghost-border hover:bg-[#1a1a1f] hover:text-[#f4f4f5] transition-all duration-200 cursor-default"
+                  className="shrink-0 px-3 py-1 rounded-full text-xs font-mono bg-[#131316] text-[#a1a1aa] ghost-border hover:bg-[#1a1a1f] hover:text-[#f4f4f5] transition-all duration-200 cursor-default inline-flex items-center gap-1.5"
                 >
-                  {tech}
+                  {tech.icon && <tech.icon className="w-3.5 h-3.5" />}
+                  {tech.name}
                 </motion.span>
               ))}
             </div>
