@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "node:fs";
-import path from "node:path";
 import { authenticate } from "@/lib/api-auth";
-
-const VARIANTS_DIR = path.join(process.cwd(), "content", "variants");
+import { handleServiceError } from "@/lib/api-utils";
+import { jobVariantService } from "@/services/JobVariantService";
 
 export async function GET(
   request: NextRequest,
@@ -18,11 +16,45 @@ export async function GET(
     return NextResponse.json({ error: "Invalid slug" }, { status: 400 });
   }
 
-  const filePath = path.join(VARIANTS_DIR, `${slug}.json`);
-  if (!fs.existsSync(filePath)) {
-    return NextResponse.json({ error: "Variant not found" }, { status: 404 });
+  try {
+    const variant = await jobVariantService.findBySlug(slug);
+    return NextResponse.json(variant);
+  } catch (e) {
+    return handleServiceError(e);
+  }
+}
+
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  if (!authenticate(request)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-  return NextResponse.json(data);
+  const { slug } = await params;
+  try {
+    const body = await request.json();
+    const variant = await jobVariantService.update(slug, body);
+    return NextResponse.json(variant);
+  } catch (e) {
+    return handleServiceError(e);
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  if (!authenticate(request)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { slug } = await params;
+  try {
+    await jobVariantService.delete(slug);
+    return new NextResponse(null, { status: 204 });
+  } catch (e) {
+    return handleServiceError(e);
+  }
 }

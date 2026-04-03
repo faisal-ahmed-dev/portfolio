@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 import { getAllVariantSlugs } from "@/data/variants";
 import { getSiteUrl } from "@/lib/site-url";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl();
-  const variantSlugs = getAllVariantSlugs();
+  const variantSlugs = await getAllVariantSlugs();
 
   return [
     {

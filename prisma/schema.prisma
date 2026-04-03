@@ -31,3 +31,171 @@ model LinkedInPost {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model JobVariant {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  slug               String   @unique
+  company            String
+  role               String
+  coverLetter        Json
+  hero               Json?
+  portfolio          Json?
+  highlightTech      String[]
+  featuredProjectIds String[]
+  hideProjectIds     String[]
+  hideSections       String[]
+  sectionOrder       String[]
+  ogTitle            String?
+  ogDescription      String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model PortfolioInfo {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  title        String
+  company      String
+  tagline      String
+  availability String
+  email        String
+  phone        String
+  github       String
+  linkedin     String
+  location     String
+  yearsExp     Int
+  cvPath       String
+  updatedAt    DateTime @updatedAt
+}
+
+model Project {
+  id           String   @id @map("_id")
+  title        String
+  description  String
+  tech         String[]
+  type         String
+  highlight    String
+  hasSimulator Boolean
+  simulatorKey String?
+  featured     Boolean  @default(false)
+  order        Int      @default(0)
+  updatedAt    DateTime @updatedAt
+}
+
+model Experience {
+  id          String   @id @map("_id")
+  company     String
+  role        String
+  period      String
+  duration    String
+  location    String
+  type        String
+  description String
+  highlights  String[]
+  tech        String[]
+  current     Boolean  @default(false)
+  order       Int      @default(0)
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id           String   @id @map("_id")
+  icon         String
+  title        String
+  description  String
+  capabilities String[]
+  order        Int      @default(0)
+  updatedAt    DateTime @updatedAt
+}
+
+model Testimonial {
+  id           String   @id @map("_id")
+  name         String
+  role         String
+  company      String
+  avatar       String?
+  quote        String
+  relationship String?
+  order        Int      @default(0)
+  updatedAt    DateTime @updatedAt
+}
+
+model Certification {
+  id           String   @id @map("_id")
+  title        String
+  issuer       String
+  date         String
+  credentialId String?
+  skills       String[]
+  order        Int      @default(0)
+  updatedAt    DateTime @updatedAt
+}
+
+model Writing {
+  id        String   @id @map("_id")
+  title     String
+  url       String
+  date      String
+  source    String
+  summary   String
+  tags      String[]
+  order     Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+model Principle {
+  id          String   @id @map("_id")
+  title       String
+  acronym     String
+  description String
+  codeSnippet String
+  language    String
+  color       String
+  order       Int      @default(0)
+  updatedAt   DateTime @updatedAt
+}
+
+model Metric {
+  id          String   @id @map("_id")
+  label       String
+  value       Int
+  suffix      String
+  prefix      String?
+  description String
+  order       Int      @default(0)
+  updatedAt   DateTime @updatedAt
+}
+
+model OpenSourceStat {
+  id          String @id @map("_id")
+  label       String
+  value       String
+  description String
+  order       Int    @default(0)
+}
+
+model PinnedRepo {
+  id            String   @id @map("_id")
+  name          String
+  description   String
+  stars         Int
+  forks         Int
+  language      String
+  languageColor String
+  url           String
+  topics        String[]
+  order         Int      @default(0)
+}
+
+model VisitRecord {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  fingerprint String
+  timestamp   DateTime
+  pathname    String
+  referrer    String
+  userAgent   String
+  country     String
+  createdAt   DateTime @default(now())
+
+  @@index([fingerprint, timestamp])
+}

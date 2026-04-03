@@ -1,29 +1,31 @@
-import fs from "node:fs";
-import path from "node:path";
+import { jobVariantService } from "@/services/JobVariantService";
 import type { JobVariant } from "@/types/portfolio.types";
-import { parseVariant } from "@/lib/variant-schema";
 
-const VARIANTS_DIR = path.join(process.cwd(), "content", "variants");
-
-export function getAllVariantSlugs(): string[] {
-  if (!fs.existsSync(VARIANTS_DIR)) return [];
-  return fs
-    .readdirSync(VARIANTS_DIR)
-    .filter((f) => f.endsWith(".json"))
-    .map((f) => f.replace(/\.json$/, ""));
+export async function getAllVariantSlugs(): Promise<string[]> {
+  const variants = await jobVariantService.findAll();
+  return variants.map((v) => v.slug);
 }
 
-export function getVariant(slug: string): JobVariant | null {
+export async function getVariant(slug: string): Promise<JobVariant | null> {
   if (!/^[a-z0-9-]+$/.test(slug)) return null;
-
-  const filePath = path.join(VARIANTS_DIR, `${slug}.json`);
-  if (!fs.existsSync(filePath)) return null;
-
   try {
-    const raw = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    const result = parseVariant(raw);
-    if (!result.success) return null;
-    return result.data as JobVariant;
+    const v = await jobVariantService.findBySlug(slug);
+    // Map DB entity to JobVariant type
+    return {
+      slug: v.slug,
+      company: v.company,
+      role: v.role,
+      coverLetter: v.coverLetter as JobVariant["coverLetter"],
+      hero: (v.hero as JobVariant["hero"]) ?? undefined,
+      portfolio: (v.portfolio as JobVariant["portfolio"]) ?? undefined,
+      highlightTech: v.highlightTech,
+      featuredProjectIds: v.featuredProjectIds,
+      hideProjectIds: v.hideProjectIds,
+      hideSections: v.hideSections,
+      sectionOrder: v.sectionOrder,
+      ogTitle: v.ogTitle ?? undefined,
+      ogDescription: v.ogDescription ?? undefined,
+    };
   } catch {
     return null;
   }

@@ -6,8 +6,9 @@ import { PortfolioPage } from "@/components/pages/PortfolioPage";
 export const dynamicParams = true;
 export const revalidate = 60;
 
-export function generateStaticParams() {
-  return getAllVariantSlugs().map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  const slugs = await getAllVariantSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -16,7 +17,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const variant = getVariant(slug);
+  const variant = await getVariant(slug);
   if (!variant) return {};
   return {
     title:
@@ -35,8 +36,7 @@ export default async function ForCompanyPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const variant = getVariant(slug);
+  const [variant, overrides] = await Promise.all([getVariant(slug), loadDataOverrides()]);
   if (!variant) notFound();
-  const overrides = loadDataOverrides();
   return <PortfolioPage variant={variant} dataOverrides={overrides} />;
 }

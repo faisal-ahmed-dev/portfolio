@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/cn";
 
 interface SectionData {
-  source: "override" | "default";
+  source: "db" | "override" | "default";
   data: unknown;
 }
 
@@ -83,7 +83,7 @@ export function PortfolioPanel({ apiKey }: PortfolioPanelProps) {
           >
             <span className="flex items-center gap-1.5">
               {key}
-              {sections[key]?.source === "override" && (
+              {sections[key]?.source !== "default" && (
                 <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
               )}
             </span>
@@ -97,13 +97,13 @@ export function PortfolioPanel({ apiKey }: PortfolioPanelProps) {
           title={activeTab}
           badge={{
             label: sections[activeTab].source,
-            variant: sections[activeTab].source === "override" ? "accent" : "default",
+            variant: sections[activeTab].source !== "default" ? "accent" : "default",
           }}
           data={sections[activeTab].data}
           apiKey={apiKey}
           onSave={(data, key) => saveSectionData(activeTab, data, key)}
           onDelete={
-            sections[activeTab].source === "override"
+            sections[activeTab].source !== "default"
               ? (key) => revertSection(activeTab, key)
               : undefined
           }

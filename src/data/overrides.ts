@@ -1,30 +1,126 @@
-import fs from "node:fs";
-import path from "node:path";
 import type { DataOverrides } from "@/types/portfolio.types";
-import { EDITABLE_SECTIONS } from "@/lib/portfolio-schema";
+import { portfolioInfoService } from "@/services/PortfolioInfoService";
+import { experienceService } from "@/services/ExperienceService";
+import { projectService } from "@/services/ProjectService";
+import { metricService } from "@/services/MetricService";
+import { serviceService } from "@/services/ServiceService";
+import { testimonialService } from "@/services/TestimonialService";
+import { writingService } from "@/services/WritingService";
+import { certificationService } from "@/services/CertificationService";
+import { openSourceService } from "@/services/OpenSourceService";
 
-const DATA_DIR = path.join(process.cwd(), "content", "data");
+export async function loadDataOverrides(): Promise<DataOverrides> {
+  const [portfolio, experience, projects, metrics, services, testimonials, writings, certifications, githubStats, pinnedRepos] =
+    await Promise.all([
+      portfolioInfoService.get(),
+      experienceService.findAll(),
+      projectService.findAll(),
+      metricService.findAll(),
+      serviceService.findAll(),
+      testimonialService.findAll(),
+      writingService.findAll(),
+      certificationService.findAll(),
+      openSourceService.getStats(),
+      openSourceService.getRepos(),
+    ]);
 
-export function loadDataOverrides(): DataOverrides {
-  if (!fs.existsSync(DATA_DIR)) return {};
-
-  const overrides: Record<string, unknown> = {};
-  for (const key of EDITABLE_SECTIONS) {
-    const filePath = path.join(DATA_DIR, `${key}.json`);
-    if (fs.existsSync(filePath)) {
-      try {
-        overrides[key] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-      } catch {
-        // Skip malformed files
-      }
-    }
-  }
-  return overrides as DataOverrides;
-}
-
-export function getOverriddenSections(): string[] {
-  if (!fs.existsSync(DATA_DIR)) return [];
-  return EDITABLE_SECTIONS.filter((key) =>
-    fs.existsSync(path.join(DATA_DIR, `${key}.json`))
-  );
+  return {
+    portfolio: {
+      name: portfolio.name,
+      title: portfolio.title,
+      company: portfolio.company,
+      tagline: portfolio.tagline,
+      availability: portfolio.availability,
+      email: portfolio.email,
+      phone: portfolio.phone,
+      github: portfolio.github,
+      linkedin: portfolio.linkedin,
+      location: portfolio.location,
+      yearsExp: portfolio.yearsExp,
+      cvPath: portfolio.cvPath,
+    },
+    experience: experience.map((e) => ({
+      id: e.id,
+      company: e.company,
+      role: e.role,
+      period: e.period,
+      duration: e.duration,
+      location: e.location,
+      type: e.type as "full-time" | "contract" | "freelance",
+      description: e.description,
+      highlights: e.highlights,
+      tech: e.tech,
+      current: e.current,
+    })),
+    projects: projects.map((p) => ({
+      id: p.id,
+      title: p.title,
+      description: p.description,
+      tech: p.tech,
+      type: p.type as import("@/types/portfolio.types").Project["type"],
+      highlight: p.highlight,
+      hasSimulator: p.hasSimulator,
+      simulatorKey: p.simulatorKey as "pos" | "form-builder" | undefined,
+      featured: p.featured,
+    })),
+    metrics: metrics.map((m) => ({
+      id: m.id,
+      label: m.label,
+      value: m.value,
+      suffix: m.suffix,
+      prefix: m.prefix ?? undefined,
+      description: m.description,
+    })),
+    services: services.map((s) => ({
+      id: s.id,
+      icon: s.icon,
+      title: s.title,
+      description: s.description,
+      capabilities: s.capabilities,
+    })),
+    testimonials: testimonials.map((t) => ({
+      id: t.id,
+      name: t.name,
+      role: t.role,
+      company: t.company,
+      avatar: t.avatar ?? undefined,
+      quote: t.quote,
+      relationship: t.relationship ?? undefined,
+    })),
+    writings: writings.map((w) => ({
+      id: w.id,
+      title: w.title,
+      url: w.url,
+      date: w.date,
+      source: w.source as import("@/types/portfolio.types").WritingArticle["source"],
+      summary: w.summary,
+      tags: w.tags,
+    })),
+    certifications: certifications.map((c) => ({
+      id: c.id,
+      title: c.title,
+      issuer: c.issuer,
+      date: c.date,
+      credentialId: c.credentialId ?? undefined,
+      skills: c.skills,
+    })),
+    openSource: {
+      githubStats: githubStats.map((s) => ({
+        label: s.label,
+        value: s.value,
+        description: s.description,
+      })),
+      pinnedRepos: pinnedRepos.map((r) => ({
+        id: r.id,
+        name: r.name,
+        description: r.description,
+        stars: r.stars,
+        forks: r.forks,
+        language: r.language,
+        languageColor: r.languageColor,
+        url: r.url,
+        topics: r.topics,
+      })),
+    },
+  };
 }

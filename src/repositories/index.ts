@@ -1,13 +1,31 @@
 import { PrismaBlogPostRepository } from "./prisma/PrismaBlogPostRepository";
 import { PrismaLinkedInPostRepository } from "./prisma/PrismaLinkedInPostRepository";
-import type { IBlogPostRepository } from "./interfaces/IBlogPostRepository";
-import type { ILinkedInPostRepository } from "./interfaces/ILinkedInPostRepository";
+import { PrismaProjectRepository } from "./prisma/PrismaProjectRepository";
+import { PrismaExperienceRepository } from "./prisma/PrismaExperienceRepository";
+import { PrismaServiceRepository } from "./prisma/PrismaServiceRepository";
+import { PrismaTestimonialRepository } from "./prisma/PrismaTestimonialRepository";
+import { PrismaCertificationRepository } from "./prisma/PrismaCertificationRepository";
+import { PrismaWritingRepository } from "./prisma/PrismaWritingRepository";
+import { PrismaPrincipleRepository } from "./prisma/PrismaPrincipleRepository";
+import { PrismaMetricRepository } from "./prisma/PrismaMetricRepository";
+import { PrismaOpenSourceRepository } from "./prisma/PrismaOpenSourceRepository";
+import { PrismaPortfolioInfoRepository } from "./prisma/PrismaPortfolioInfoRepository";
+import { PrismaJobVariantRepository } from "./prisma/PrismaJobVariantRepository";
+import { PrismaVisitRepository } from "./prisma/PrismaVisitRepository";
 
-export const blogPostRepository: IBlogPostRepository =
-  new PrismaBlogPostRepository();
+export const blogPostRepository = new PrismaBlogPostRepository();
+export const linkedInPostRepository = new PrismaLinkedInPostRepository();
+export const projectRepository = new PrismaProjectRepository();
+export const experienceRepository = new PrismaExperienceRepository();
+export const serviceRepository = new PrismaServiceRepository();
+export const testimonialRepository = new PrismaTestimonialRepository();
+export const certificationRepository = new PrismaCertificationRepository();
+export const writingRepository = new PrismaWritingRepository();
+export const principleRepository = new PrismaPrincipleRepository();
+export const metricRepository = new PrismaMetricRepository();
+export const openSourceRepository = new PrismaOpenSourceRepository();
+export const portfolioInfoRepository = new PrismaPortfolioInfoRepository();
+export const jobVariantRepository = new PrismaJobVariantRepository();
+export const visitRepository = new PrismaVisitRepository();
 
-export const linkedInPostRepository: ILinkedInPostRepository =
-  new PrismaLinkedInPostRepository();
-
-export type { IBlogPostRepository, ILinkedInPostRepository };
 export * from "./types";

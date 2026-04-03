@@ -3,7 +3,7 @@ import { loadDataOverrides } from "@/data/overrides";
 
 export const revalidate = 60;
 
-export default function Home() {
-  const overrides = loadDataOverrides();
+export default async function Home() {
+  const overrides = await loadDataOverrides();
   return <PortfolioPage variant={null} dataOverrides={overrides} />;
 }

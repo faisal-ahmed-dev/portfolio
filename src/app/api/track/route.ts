@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "node:crypto";
-import { isDuplicate, appendVisit } from "@/data/analytics";
+import { visitService } from "@/services/VisitService";
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,11 +24,11 @@ export async function POST(request: NextRequest) {
       .digest("hex")
       .slice(0, 16);
 
-    if (isDuplicate(fingerprint)) {
+    if (await visitService.isDuplicate(fingerprint)) {
       return NextResponse.json({ tracked: false });
     }
 
-    appendVisit({
+    await visitService.create({
       fingerprint,
       timestamp: new Date().toISOString(),
       pathname,
