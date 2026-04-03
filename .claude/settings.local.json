@@ -33,7 +33,11 @@
       "Bash(node -e \"import\\(''zod''\\).then\\(z => console.log\\(Object.keys\\(z\\).slice\\(0,20\\)\\)\\)\")",
       "Bash(xargs grep:*)",
       "Bash(grep -r 'Image from' src/ --include=*.tsx --include=*.ts)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(find /d/CODEBLOCKS/portfolio -type f -name .env*)",
+      "Bash(pnpm prisma:*)",
+      "Bash(Get-Content \"C:\\\\Users\\\\faisa\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--CODEBLOCKS-portfolio\\\\f57de10c-e81a-49d5-b5e4-1a5a04335d2a\\\\tasks\\\\b0uw2kb14.output\" -Tail 30 2>&1)",
+      "Bash(npx prisma:*)"
     ]
   }
 }

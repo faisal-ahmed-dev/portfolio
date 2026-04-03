@@ -15,6 +15,8 @@ import { ExperienceTimeline } from "@/components/sections/ExperienceTimeline";
 import { PrinciplesShowcase } from "@/components/sections/PrinciplesShowcase";
 import { OpenSourceSection } from "@/components/sections/OpenSourceSection";
 import { WritingsSection } from "@/components/sections/WritingsSection";
+import { BlogPreviewSection } from "@/components/sections/BlogPreviewSection";
+import { LinkedInSection } from "@/components/sections/LinkedInSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
@@ -63,6 +65,8 @@ const ALL_SECTIONS: SectionDef[] = [
   { id: "principles", component: PrinciplesShowcase, variantOnly: true },
   { id: "opensource", component: OpenSourceSection },
   { id: "writings", component: WritingsSection },
+  { id: "blog", component: BlogPreviewSection },
+  { id: "linkedin", component: LinkedInSection },
   { id: "testimonials", component: TestimonialsSection },
   { id: "certifications", component: CertificationsSection },
   { id: "contact", component: ContactSection },
