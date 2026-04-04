@@ -30,7 +30,7 @@ const NEW_VARIANT_TEMPLATE = {
   },
 };
 
-async function saveVariant(data: unknown, apiKey: string) {
+async function createVariant(data: unknown, apiKey: string) {
   const res = await fetch("/api/variants", {
     method: "POST",
     headers: { "Content-Type": "application/json", "x-api-key": apiKey },
@@ -42,6 +42,22 @@ async function saveVariant(data: unknown, apiKey: string) {
     return { ok: false, error: detail };
   }
   return { ok: true };
+}
+
+function makeUpdateVariant(slug: string) {
+  return async (data: unknown, apiKey: string) => {
+    const res = await fetch(`/api/variants/${slug}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", "x-api-key": apiKey },
+      body: JSON.stringify(data),
+    });
+    const json = await res.json();
+    if (!res.ok) {
+      const detail = json.details?.join(", ") ?? json.error;
+      return { ok: false, error: detail };
+    }
+    return { ok: true };
+  };
 }
 
 async function deleteVariant(slug: string, apiKey: string) {
@@ -180,7 +196,7 @@ export function VariantPanel({ apiKey }: VariantPanelProps) {
           badge={{ label: "new", variant: "status" }}
           data={activeData}
           apiKey={apiKey}
-          onSave={saveVariant}
+          onSave={createVariant}
           onUpdate={handleUpdate}
           minHeight="400px"
         />
@@ -193,7 +209,7 @@ export function VariantPanel({ apiKey }: VariantPanelProps) {
           badge={{ label: "variant", variant: "accent" }}
           data={activeData}
           apiKey={apiKey}
-          onSave={saveVariant}
+          onSave={makeUpdateVariant(activeSlug)}
           onDelete={(key) => deleteVariant(activeSlug, key)}
           onUpdate={handleUpdate}
           minHeight="400px"
